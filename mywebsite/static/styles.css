@@ -1,0 +1,76 @@
+html {
+    height: max-content;
+    min-height: 100%;
+}
+
+.main_text {
+	font-weight: 100;
+	color: white;
+	text-align: center;
+	padding-top: 0;
+	margin: 0 0 10 0;
+}
+.classic_font {
+	font-weight: 100;
+	color: white;
+	text-align: center;
+}
+.white_font {
+	font: Roboto;
+	font-weight: 100;
+	color: white;
+	font-size: 14px;
+}
+hr {
+	color: white;
+
+}
+
+.background_img {
+	background-image: url(mount.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+.background_img_blur {
+	background-image: url(blur.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+ul {
+	margin: 0px;
+	padding: 0;
+}
+nav {
+	margin-top: 10px;
+	width: auto;
+	font: Roboto;
+	font-weight: 200;
+}
+.moto {
+	font: Roboto;
+	font-weight: 100;
+	color: white;
+	font-size: 18px;
+	padding-bottom: 0;
+	margin: 10 0 0 0;
+}
+.center {
+	margin-top: 150px;
+}
+
+h2 {
+	color: blue;
+}
+.background_color {
+	background:rgba(0,0,0,0.2);
+	margin: 2rem auto;
+	padding: 0 1rem;
+}
+.form_title {
+	text-align: center;
+	color: white;
+}
+button {
+	margin: auto;
+}
