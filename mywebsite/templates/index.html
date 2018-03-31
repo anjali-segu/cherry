@@ -1,10 +1,49 @@
 {% extends 'base_with_navbar.html' %}
+{%load staticfiles %}
 
 {% block content %}
-<div class="center">
-	<hr>
-	<p class="moto">Make a change and donate today<p>
-	<h1 class="main_text">CherryGiver</h1>
-	<hr>
-</div>
+<div class="row no-space">
+    <div class="col no-space">
+      <div class="card no-space">
+        <div class="card-image">
+          <img src="{% static 'dog4.jpg' %}">
+          <span class="card-title herotextmain">Find a Charity</span>
+					<span class="card-title herotextsub thin">Make and Impact and Donate Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="red row">
+ 	<div class="col s4 columns red darken-1">
+	 	<i class=" large material-icons columntext">search</i>
+	 	<p class="columntext">Find a Charity in Need</p>
+ 	</div>
+
+ 	<div class="col s4 columns red darken-2">
+ 		<i class=" large material-icons columntext">card_giftcard</i>
+ 		<p class="columntext">Donate for a Cause</p>
+ 	</div>
+
+ 	<div class="col s4 columns red darken-3">
+ 		<i class=" large material-icons columntext">people</i>
+ 		<p class="columntext">Add a Charity</p>
+ 	</div>
+ </div>
+
+ <div class="container">
+ 	<h3>About Us</h3>
+ 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+ 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+ 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+ 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+ 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+ 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+ 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+ 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+ 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+ 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+ 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+ 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+ </div>
 {% endblock %}

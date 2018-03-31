@@ -1,15 +1,4 @@
-html {
-    height: max-content;
-    min-height: 100%;
-}
 
-.main_text {
-	font-weight: 100;
-	color: white;
-	text-align: center;
-	padding-top: 0;
-	margin: 0 0 10 0;
-}
 .classic_font {
 	font-weight: 100;
 	color: white;
@@ -20,43 +9,6 @@ html {
 	font-weight: 100;
 	color: white;
 	font-size: 14px;
-}
-hr {
-	color: white;
-
-}
-
-.background_img {
-	background-image: url(mount.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-
-}
-.background_img_blur {
-	background-image: url(blur.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-ul {
-	margin: 0px;
-	padding: 0;
-}
-nav {
-	margin-top: 10px;
-	width: auto;
-	font: Roboto;
-	font-weight: 200;
-}
-.moto {
-	font: Roboto;
-	font-weight: 100;
-	color: white;
-	font-size: 18px;
-	padding-bottom: 0;
-	margin: 10 0 0 0;
-}
-.center {
-	margin-top: 150px;
 }
 
 h2 {
@@ -71,6 +23,89 @@ h2 {
 	text-align: center;
 	color: white;
 }
-button {
-	margin: auto;
+
+.descriptive_photo {
+	width: 800px;
+	height: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.edit {
+	margin-top: 7px;
+	float: right;
+}
+/*New CSS*/
+.buttons {
+  border-radius: 20px !important;
+}
+.navpad {
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+.backgroundcol {
+  background-color: #000f28;
+  height: 45px;
+  margin: 0;
+  padding: 0;
+}
+.headtop {
+  padding: 0;
+  margin: 0;
+}
+
+.headpad {
+  padding-top: 10px;
+}
+.classicfont2 {
+  color: white;
+  text-align: right;
+}
+.pfontsize {
+  font-size: 15px;
+  text-decoration: underline;
+}
+.img {
+  width: 100%;
+  margin-bottom: none;
+
+}
+h3 {
+  text-align: center;
+}
+.heroimg {
+  z-index: -1;
+}
+
+.herotextmain {
+	left: 55% !important;
+  top: 10% !important;
+  font-size: 6em !important;
+  color: #fefffc !important;
+  font-weight: 600 !important;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+.herotextsub {
+  left: 55% !important;
+  top: 30% !important;
+  font-size: 2.3em !important;
+  color: #fefffc !important;
+	font-weight: 200 !important;
+}
+
+.columns {
+  text-align: center;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-size: 20px;
+	padding: 1em !important;
+}
+
+
+.no-space {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.columntext {
+	color: rgba(255,255,255,0.84);
 }
