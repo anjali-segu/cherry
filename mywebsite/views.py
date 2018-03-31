@@ -27,7 +27,7 @@ def charities(request):
     return render(
         request,
         'charities.html',
-        {'user': request.user},
+        {'user': request.user, 'items': list(range(20))},
     )
 
 # def charity(request, charity_name, charity_id):
