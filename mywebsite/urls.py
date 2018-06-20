@@ -28,7 +28,8 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^signup/$', core_views.signup, name='signup'),
     url(r'^charities/$', core_views.charities),
-    path('charity/<charity_name>/<charity_id>', charity_views.charity),
+    # ^ change core_views to charity_views bc we are changing the pattern
+    path('charity/<charity_name>/<charity_id>/', charity_views.charity),
     url(r'^admin/', admin.site.urls),
 ]
 
