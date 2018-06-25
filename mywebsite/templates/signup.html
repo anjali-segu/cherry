@@ -1,23 +1,44 @@
 {% extends 'base_with_navbar.html' %}
 
 {% block content %}
-<div class="container background_color">
-    <h2 class="thin form_title">Sign up</h2>
-    <form method="post">
-      {% csrf_token %}
-      {% for field in form %}
-        <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-          {% if field.help_text %}
-            <small style="color: white">{{ field.help_text }}</small>
-          {% endif %}
-          {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-          {% endfor %}
-        </p>
-      {% endfor %}
-      <button class="btn waves-effect waves-light" type="submit">Sign up</button>
+<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Placeholder" id="new_user_name" type="text" class="validate">
+          <label for="new_user_name">Username</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="new_password" type="password" class="validate">
+          <label for="new_password">Password</label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="new_charity_name" type="text" class="validate">
+          <label for="new_charity_name">Charity Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="new_charity_url" type="text" class="validate">
+          <label for="new_charity_url">Charity Webpage</label>
+        </div>
+      </div>
+
+        <a class="waves-effect waves-light btn" id="signup_submit">Sign Up</a>
+
     </form>
-</div>
+  </div>
 {% endblock %}

@@ -76,6 +76,13 @@ h3 {
 .heroimg {
   z-index: -1;
 }
+.herotextborder {
+	border: 3px solid white !important;
+	padding-bottom: 0 !important;
+	height:245px;
+
+
+}
 
 .herotextmain {
 	left: 55% !important;
@@ -84,6 +91,7 @@ h3 {
   color: #fefffc !important;
   font-weight: 600 !important;
   font-family: 'IBM Plex Sans Condensed', sans-serif;
+
 }
 .herotextsub {
   left: 55% !important;
@@ -91,7 +99,11 @@ h3 {
   font-size: 2.3em !important;
   color: #fefffc !important;
 	font-weight: 200 !important;
+
 }
+/*.herotextborder {
+	border: 3px solid white !important;
+}*/
 
 .columns {
   text-align: center;
@@ -123,4 +135,36 @@ h3 {
 }
 .findacharityhead{
 	text-align: center;
+}
+.featuredboxshadow {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	height: 382px;
+}
+.feauturedcharitytext {
+	background-color: #212121;
+  font-family: 'Raleway', sans-serif;
+	color: white;
+	float: right;
+ 	margin: 0 0 1.2em 0;
+	padding: .4em;
+}
+.leftfeaturedcharitybox {
+	margin-bottom: 0px;
+	padding: 0px !important;
+}
+.rightfeaturedcharitybox{
+text-align: left;
+font-family: 'Raleway', sans-serif;
+font-size: 38px;
+color: white;
+}
+.learnmorebox {
+	color: white;
+	font-size: 20px;
+	font-family: 'Raleway', sans-serif;
+	border: 3px solid white;
+	padding: 0 !important;
+	height: 41px;
+  width: 166px;
+
 }

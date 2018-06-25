@@ -24,12 +24,13 @@ from django.urls import path
 
 urlpatterns = [
     url(r'^$', core_views.index),
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
-    url(r'^signup/$', core_views.signup, name='signup'),
-    url(r'^charities/$', core_views.charities),
+    url(r'^login/$', core_views.login_route, name='login'),
+    url(r'^logout/$', core_views.logout_route, name='logout'),
+    url(r'^signup/$', charity_views.signup, name='signup'),
+    url(r'^charities/$', charity_views.charities),
     # ^ change core_views to charity_views bc we are changing the pattern
     path('charity/<charity_name>/<charity_id>/', charity_views.charity),
+    url(r'^charity/create/$', charity_views.signup_submit),
     url(r'^admin/', admin.site.urls),
 ]
 

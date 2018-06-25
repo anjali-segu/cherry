@@ -8,9 +8,12 @@ class CharityProfileAdmin(admin.ModelAdmin):
     list_display = (
         'id',
         '_user',
-        'charity_name',
-        'charity_email',
-        'charity_url'
+        'name',
+        'charity_url',
+        'bio',
+        'img_url',
+        'money_raised',
+        'date_created'
     )
 
     list_display_links = ('id',)

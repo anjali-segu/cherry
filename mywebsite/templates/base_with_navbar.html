@@ -3,17 +3,20 @@
 
 {% block navbar %}
 <nav>
-    <div class="nav-wrapper grey lighten-5 navpad">
-      <a href="/" class="brand-logo blue-grey-text text-darken-4 thin">Cherry Giver</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons black-text">menu</i></a>
+    <!-- <div class="nav-wrapper grey lighten-5 navpad"> -->
+    <div class="nav-wrapper  grey darken-4 navpad">
+      <!-- <a href="/" class="brand-logo blue-grey-text text-darken-4 thin">Cherry Giver</a> -->
+      <a href="/" class="brand-logo white-text thin">Cherry Giver</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/" class="btn red buttons">Home</a></li>
-        <li><a href="/charities" class="btn red buttons">Find a Charity</a></li>
+        <li><a href="/" class="btn cyan darken-1 buttons">Home</a></li>
+        <li><a href="/charities" class="btn cyan darken-1 buttons">Find a Charity</a></li>
         {% if user.is_authenticated %}
-          <li><a href="{% url 'logout' %}" class="btn red buttons">Logout</a></li>
+          <li><a href="#" class="btn cyan darken-1 buttons" id="logout_btn">Logout</a></li>
         {% else %}
-          <li><a href="{% url 'signup' %}" class="btn red buttons">Add a Charity</a></li>
-          <li><a href="{% url 'login' %}" class="btn red buttons">Login</a></li>
+          <li><a href="{% url 'signup' %}" class="btn cyan darken-1 buttons">Add a Charity</a></li>
+           <!-- <a class="waves-effect waves-light btn modal-trigger" href="#login">Modal</a> -->
+          <li><a href="#login" class="btn cyan darken-1 buttons modal-trigger">Login</a></li>
         {% endif %}
       </ul>
     </div>
@@ -23,11 +26,43 @@
     <li><a href="/">Home</a></li>
     <li><a href="/charities">Find a Charity</a></li>
     {% if user.is_authenticated %}
-      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <li><a href="#" id="logout_btn_sidebar">Logout</a></li>
     {% else %}
       <li><a href="{% url 'signup' %}">Add a Charity</a></li>
-      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="#login" class="modal-trigger">Login</a></li>
     {% endif %}
   </ul>
+
+<!-- Login Modal -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4>
+
+      <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="Placeholder" id="user_name" type="text" class="validate">
+              <label for="first_name">Username</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <a class="waves-effect waves-light btn" id="login_btn">Login</a>
+
+        </form>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
 
 {% endblock %}
