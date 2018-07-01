@@ -9,11 +9,14 @@ class CharityProfileAdmin(admin.ModelAdmin):
         'id',
         '_user',
         'name',
+        'is_displayed',
         'charity_url',
+        '_profile_url',
         'bio',
         'img_url',
         'money_raised',
-        'date_created'
+        'date_created',
+
     )
 
     list_display_links = ('id',)
@@ -21,10 +24,14 @@ class CharityProfileAdmin(admin.ModelAdmin):
     def _user(self, instance):
         link = reverse('admin:auth_user_change', args=[instance.user.id])
 
-        return format_html('<a href="{link}" target="_blank">{username}</a>'.format(
-            link=link,
-            username=instance.user.username
-        ))
+        return format_html(
+            f'<a href="{link}" target="_blank">{instance.user.username}</a>'
+        )
+
+    def _profile_url(self, instance):
+        return format_html(
+            f'<a href="{instance.profile_url()}">{instance.profile_url()}</a>'
+        )
 
 # Register your models here.
 admin.site.register(CharityProfile, CharityProfileAdmin)

@@ -23,13 +23,6 @@ h2 {
 	color: white;
 }
 
-.descriptive_photo {
-	width: 800px;
-	height: 400px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
 .edit {
 	margin-top: 7px;
 	float: right;
@@ -166,5 +159,67 @@ color: white;
 	padding: 0 !important;
 	height: 41px;
   width: 166px;
+}
+.charityinfobox {
+	background-color: white;
+	width:24em;
+	z-index: 1;
+	left: 68% !important;
+	top: 20% !important;
+	position: absolute;
+	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding-left: 11px;
+	padding-right: 11px;
+}
+.charity_name_box {
+	font-size: 35px;
+	font-family: 'IBM Plex Sans Condensed', sans-serif;
+	text-align: center;
+	margin-bottom: 7px;
+	margin-top: 15px;
+	padding-top: 7px;
+}
+.charity_bio_box {
+	text-align: left;
+	font-weight: 200;
+	font-size: 25px;
+	margin-top:0;
+}
+.money_title_box{
+	font-size: 22px;
+	font-weight: 200;
+}
+.descriptive_photo {
+	width: 100%;
+	height: 38em;
+	z-index: -1;
+	margin-bottom: none;
+}
+.money_num_size {
+	font-size: 20px;
+	margin-top: 0px;
+}
+.donatenowbox {
+	background-color: #212121;
+	color: white;
+	font-size: 20px;
+	font-weight:200;
+	text-align: center;
+  padding-bottom: 10px;
+  height: 40px;
+  padding-top: 5px;
+  width: 120px;
+	padding-right: 2px;
+	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+}
+.needed_title {
+	color: #212121;
+	text-align: center;
+}
+.edit_button {
+	z-index: 1 !important;
+	position: absolute !important;
+	left: 95% !important;
+	top: 12% !important;
 }

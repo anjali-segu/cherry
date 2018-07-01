@@ -4,14 +4,62 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<a class="waves-effect waves-light btn edit"><i class="material-icons right">create</i>Edit</a>
-<h1 class="thin classic_font">{{ charity.charity_name }}</h1>
-<img class="descriptive_photo" src="{% static 'volunteer.jpg' %}">
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<a href="{{charity.charity_url}}" target="_blank">Visit Our Website</a>
+<!-- <a class="waves-effect waves-light btn edit"><i class="material-icons right">create</i>Edit</a> -->
+<img class="descriptive_photo" src="{{charity.img_url}}">
+{% if charity_logged_in %}
+ <a href="#edit" class="btn-floating btn-large cyan lighten-1 edit_button modal-trigger"><i class="material-icons">create</i></a>
+ <!-- Edit Modal -->
+   <div id="edit" class="modal">
+     <div class="modal-content">
+       <h4>Edit {{charity.name}} Page</h4>
+
+       <div class="row">
+         <form class="col s12">
+           <div class="row">
+             <div class="input-field col s12">
+               <input placeholder="Placeholder" id="bio" type="text">
+               <label for="bio">Bio</label>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="input-field col s12">
+               <input id="goal" type="text">
+               <label for="goal">Goal</label>
+             </div>
+           </div>
+
+           <a class="waves-effect waves-light btn" id="save_btn">Save</a>
+
+         </form>
+       </div>
+     </div>
+     <div class="modal-footer">
+       <a href="#" class="modal-close waves-effect waves-green btn-flat">Close</a>
+     </div>
+   </div>
+{% endif %}
+<div class="charityinfobox">
+    <h1 class="black-text charity_name_box">{{ charity.name }}</h1>
+    <p class="charity_bio_box black-text">{{charity.bio}}</p>
+    <hr>
+
+    <div class="row" style="height: 55px; margin-bottom: 0px;">
+        <p class="col s6 money_title_box" style="margin-bottom: 0px;">Money Raised</p>
+        <p class="col s6 money_title_box" style="margin-bottom: 0px;">Goal</p>
+    </div>
+
+    <div class="row">
+        <p class="col s6 money_num_size green-text darken-4">${{charity.money_raised}}</p>
+        <p class="col s6 money_num_size">$2,000</p>
+    </div>
+
+    <p class="donatenowbox">Donate Now</p>
+
+    <a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a>
+    <!-- Possibly add like twitter insta etc. handles -->
+</div>
+<div>
+<h2 class="thin needed_title">What We Need:</h2>
+</div>
 {% endblock %}

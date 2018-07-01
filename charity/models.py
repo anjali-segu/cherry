@@ -14,3 +14,7 @@ class CharityProfile(models.Model):
     img_url = models.URLField(null=True, blank=True, default=None)
     money_raised = models.IntegerField(null=True, blank=True, default=None)
     date_created = models.DateTimeField(auto_now_add=True)
+    is_displayed = models.BooleanField(default=True)
+
+    def profile_url(self):
+        return f'/charity/{self.name}/{self.id}/'

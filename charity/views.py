@@ -47,7 +47,11 @@ def signup(request):
     )
 
 def charity(request, charity_name, charity_id):
-    print(charity_id, charity_name)
+    charity_logged_in = (
+        request.user.is_authenticated and
+        str(request.user.charityprofile.id) == charity_id
+    )
+
     charity = CharityProfile.objects.get(pk=charity_id)
     return render(
         request,
@@ -55,6 +59,7 @@ def charity(request, charity_name, charity_id):
         {
             'user': request.user,
             'charity': charity,
+            'charity_logged_in': charity_logged_in
         },
     )
 
@@ -105,8 +110,10 @@ sample_charities = [
 ]
 
 def charities(request):
+    items =  CharityProfile.objects.filter(is_displayed=True)
+
     return render(
         request,
         'charities.html',
-        {'user': request.user, 'items': sample_charities},
+        {'user': request.user, 'items': items},
     )
