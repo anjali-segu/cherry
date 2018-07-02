@@ -15,21 +15,38 @@
 
        <div class="row">
          <form class="col s12">
+           <input type="hidden" value="{{charity.id}}" id="charity_id"></input>
+           <input type="hidden" value="{{charity.name}}" id="charity_current_name"></input>
+
            <div class="row">
              <div class="input-field col s12">
-               <input placeholder="Placeholder" id="bio" type="text">
+               <input id="name" placeholder="{{charity.name}}" type="text">
+               <label for="name">Charity Name</label>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="input-field col s12">
+               <input placeholder="{{charity.bio}}" id="bio" type="text">
                <label for="bio">Bio</label>
              </div>
            </div>
 
            <div class="row">
              <div class="input-field col s12">
-               <input id="goal" type="text">
-               <label for="goal">Goal</label>
+               <input id="url" placeholder="{{charity.charity_url}}" type="text">
+               <label for="url">Charity Webpage</label>
              </div>
            </div>
 
-           <a class="waves-effect waves-light btn" id="save_btn">Save</a>
+           <div class="row">
+             <div class="input-field col s12">
+               <input id="img_url" placeholder="{{charity.img_url}}" type="text">
+               <label for="img_url">Image URL</label>
+             </div>
+           </div>
+
+           <a class="waves-effect waves-light btn" id="update_btn">Update</a>
 
          </form>
        </div>

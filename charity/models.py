@@ -42,7 +42,6 @@ class Campaign(models.Model):
         Should be the sum of the CampaignItem cost
         """
         total_cost = self.campaignitem_set.all().aggregate(Sum('item_cost'))['item_cost__sum']
-
         return total_cost
 
     def __str__(self):

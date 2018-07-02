@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^charities/$', charity_views.charities),
     # ^ change core_views to charity_views bc we are changing the pattern
     path('charity/<charity_name>/<charity_id>/', charity_views.charity),
+    path('charity/<charity_name>/<charity_id>/update/', charity_views.charity_update),
     url(r'^charity/create/$', charity_views.signup_submit),
     url(r'^admin/', admin.site.urls),
 ]

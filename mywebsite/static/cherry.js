@@ -35,4 +35,34 @@ $( document ).ready(function(){
       window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
     })
   })
+  $('#update_btn').click(function(){
+    const updatedFields = {}
+    const newName = $('#name').val()
+    if (newName && newName !== '') {
+      updatedFields.name = newName
+    }
+    const newBio = $('#bio').val()
+    if (newBio && newBio !== '') {
+      updatedFields.bio = newBio
+    }
+    const newURL = $('#url').val()
+    if (newURL && newURL !== '') {
+      updatedFields.charity_url = newURL
+    }
+    const newImgURL = $('#img_url').val()
+    if (newImgURL && newImgURL !== '') {
+      updatedFields.img_url = newImgURL
+    }
+
+    console.log(updatedFields)
+
+    $.post(
+      `/charity/${$('#charity_current_name').val()}/${$('#charity_id').val()}/update/`,
+      updatedFields,
+      function(response){
+        console.log(response)
+        location.reload()
+      }
+    )
+  })
 })

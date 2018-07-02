@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import CharityProfile
+from .models import CharityProfile, Campaign
 
 # Create your views here.
 # class CharityProfileDetail(View):
@@ -30,6 +30,8 @@ def signup_submit(request):
     login(request, user)
     charity_profile = CharityProfile(user=user, name=name, charity_url=charity_url)
     charity_profile.save()
+    campaign = Campaign(charityprofile=charity_profile)
+    campaign.save()
     return JsonResponse({
         'user_id': user.id,
         'charity_profile_id': charity_profile.id,
@@ -37,6 +39,8 @@ def signup_submit(request):
         'success': True,
 
     })
+
+
 def signup(request):
     return render(
         request,
@@ -45,6 +49,7 @@ def signup(request):
             'user': request.user,
         },
     )
+
 
 def charity(request, charity_name, charity_id):
     charity_logged_in = (
@@ -63,51 +68,26 @@ def charity(request, charity_name, charity_id):
         },
     )
 
-sample_charities = [
-    {
-        'name': 'Austin Pets Alive',
-        'email': None,
-        'password': None,
-        'id': None,
-        'url': 'https://www.austinpetsalive.org/',
-        'bio': 'We maintain innovative programs designed to save animals from euthanasia',
-        'image_url': 'https://pbs.twimg.com/profile_images/908381920207134721/cyz_nKaf_400x400.jpg',
-        'money_raised': '300',
-        'tags': [
-            'animals',
-            'shelter'
-        ]
-    },
-    {
-        'name': 'American Cancer Society',
-        'email': None,
-        'password': None,
-        'id': None,
-        'url': 'https://www.cancer.org/',
-        'bio': 'Dedicated to helping people who face cancer. Learn about cancer research, patient services, early detection, treatment and education at cancer.org.',
-        'image_url': 'https://i.forbesimg.com/media/lists/companies/american-cancer-society_416x416.jpg',
-        'money_raised': '200',
-        'tags': [
-            'health',
-            'cancer'
-        ]
-    },
-    {
-        'name': 'Scottish Rite Theater',
-        'email': None,
-        'password': None,
-        'id': None,
-        'url': 'http://scottishritetheater.org/about/',
-        'bio': 'We maintain innovative programs designed to save animals from euthanasia',
-        'image_url': 'https://s3-media2.fl.yelpcdn.com/bphoto/j7PZ7AeRN5m3sMjlcePo2A/l.jpg',
-        'money_raised': '100',
-        'tags': [
-            'children',
-            'entertainment'
-        ]
-    },
 
-]
+@csrf_exempt
+def charity_update(request, charity_name, charity_id):
+    charity_logged_in = (
+        request.user.is_authenticated and
+        str(request.user.charityprofile.id) == charity_id
+    )
+
+    if not charity_logged_in:
+        return JsonResponse({
+            'success': False,
+        })
+
+    updated_fields = request.POST.dict()
+    charity_profile = CharityProfile.objects.filter(pk=charity_id)
+    charity_profile.update(**updated_fields)
+    return JsonResponse({
+        'success': True,
+    })
+
 
 def charities(request):
     items =  CharityProfile.objects.filter(is_displayed=True)
