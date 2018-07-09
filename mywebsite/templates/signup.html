@@ -1,7 +1,7 @@
 {% extends 'base_with_navbar.html' %}
 
 {% block content %}
-<div class="row">
+<div class="row container" style=" margin-top: 4em;">
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
@@ -17,21 +17,19 @@
 
 
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
+          <input id="new_charity_name" type="text" class="validate">
+          <label for="new_charity_name">Charity Name</label>
+        </div>
+
+        <div class="input-field col s6">
           <input id="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s12">
-          <input id="new_charity_name" type="text" class="validate">
-          <label for="new_charity_name">Charity Name</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s8">
           <input id="new_charity_url" type="text" class="validate">
           <label for="new_charity_url">Charity Webpage</label>
         </div>

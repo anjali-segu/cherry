@@ -223,3 +223,24 @@ color: white;
 	left: 95% !important;
 	top: 12% !important;
 }
+
+.money_raised_text{
+	font-weight: 300;
+	font-size: 30px;
+	color: #009688;
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+.goal_text {
+	font-size: 20px;
+	font-weight: 300;
+	/* color:#616161; */
+	color: #80cbc4;
+	margin-top: 0px;
+}
+.addcampaign_btn{
+	position: absolute !important;
+	top: 45em !important;
+	left: 66% !important;
+	bottom: 5px;
+}

@@ -4,14 +4,15 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<!-- <a class="waves-effect waves-light btn edit"><i class="material-icons right">create</i>Edit</a> -->
 <img class="descriptive_photo" src="{{charity.img_url}}">
+
+
 {% if charity_logged_in %}
  <a href="#edit" class="btn-floating btn-large cyan lighten-1 edit_button modal-trigger"><i class="material-icons">create</i></a>
  <!-- Edit Modal -->
    <div id="edit" class="modal">
      <div class="modal-content">
-       <h4>Edit {{charity.name}} Page</h4>
+       <h4>Edit Page *leave field unchanged if no change*</h4>
 
        <div class="row">
          <form class="col s12">
@@ -45,6 +46,93 @@
                <label for="img_url">Image URL</label>
              </div>
            </div>
+          <!-- Checkboxes -->
+           <div class="row">
+             <div class="col s4">
+               <p>
+                <label>
+                  <input type="checkbox" class="filled-in" checked="checked" />
+                  <span>Animals</span>
+                </label>
+               </p>
+            </div>
+
+           <div class="col s4">
+               <p>
+                <label>
+                  <input type="checkbox" class="filled-in" checked="checked" />
+                  <span>Community Development</span>
+                </label>
+               </p>
+           </div>
+
+           <div class="col s4">
+               <p>
+                <label>
+                  <input type="checkbox" class="filled-in" checked="checked" />
+                  <span>Arts/Culture</span>
+                </label>
+               </p>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col s4">
+             <p>
+              <label>
+                <input type="checkbox" class="filled-in" checked="checked" />
+                <span>Education</span>
+              </label>
+             </p>
+          </div>
+
+         <div class="col s4">
+             <p>
+              <label>
+                <input type="checkbox" class="filled-in" checked="checked" />
+                <span>Environment</span>
+              </label>
+             </p>
+         </div>
+
+         <div class="col s4">
+             <p>
+              <label>
+                <input type="checkbox" class="filled-in" checked="checked" />
+                <span>Health</span>
+              </label>
+             </p>
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col s4">
+           <p>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>Human Services</span>
+            </label>
+           </p>
+        </div>
+
+       <div class="col s4">
+           <p>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>Research</span>
+            </label>
+           </p>
+       </div>
+
+       <div class="col s4">
+           <p>
+            <label>
+              <input type="checkbox" class="filled-in" checked="checked" />
+              <span>Human Rights</span>
+            </label>
+           </p>
+       </div>
+     </div>
 
            <a class="waves-effect waves-light btn" id="update_btn">Update</a>
 
@@ -56,40 +144,134 @@
      </div>
    </div>
 {% endif %}
+
+
+
 <div class="charityinfobox">
-    <h1 class="black-text charity_name_box">{{ charity.name }}</h1>
+    <span>
+      <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a></h1>
+    </span>
+
     <p class="charity_bio_box black-text">{{charity.bio}}</p>
     <hr>
 
-    <div class="row" style="height: 55px; margin-bottom: 0px;">
-        <p class="col s6 money_title_box" style="margin-bottom: 0px;">Money Raised</p>
-        <p class="col s6 money_title_box" style="margin-bottom: 0px;">Goal</p>
-    </div>
 
-    <div class="row">
-        <p class="col s6 money_num_size green-text darken-4">${{charity.money_raised}}</p>
-        <p class="col s6 money_num_size">${{charity.campaign_goal}}</p>
+    <div class="progress" style="margin-top: 30px;">
+      <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
+    </div>
+    <div>
+      <p class="money_raised_text">${{charity.money_raised}}</p>
+      <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
     </div>
 
     <p class="donatenowbox">Donate Now</p>
-
-    <a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a>
     <!-- Possibly add like twitter insta etc. handles -->
 </div>
+
 <div>
-<h2 class="thin needed_title">What We Need:</h2>
-<div class="row">
-  {% for i in charity.campaign_items %}
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">{{i.item_name}}</span>
-          <p>{{i.item_cost}}</p>
-          <p>{{i.item_description}}</p>
+  <div class="row">
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+      {% for campaign_in_list in charity.campaigns %}
+        <li>
+            <a href="{{charity.profile_url}}?campaign_id={{campaign_in_list.id}}">{{campaign_in_list.name}}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="row">
+    <h2 class="thin needed_title">{{campaign.name}} Budget</h2>
+    <!-- Dropdown Trigger -->
+    <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
+    {% if charity_logged_in %}
+      <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
+    {% endif %}
+  </div>
+
+  <!-- Add Campaign Modal -->
+  <div id="addcampaign" class="modal">
+
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12">
+
+            <div class="row">
+              <div class="input-field col s12">
+                  <select id="campaign_selected">
+                    <option value="" selected disabled>Please select campaign</option>
+                    {% for campaign_in_list in charity.campaigns %}
+                    <option value="{{campaign_in_list.id}}">{{campaign_in_list.name}}</option>
+                    {% endfor %}
+                  </select>
+                  <label>Campaign</label>
+              </div>
+            </div>
+
+
+            <div class="row">
+
+              <div class="input-field col s6">
+                <input placeholder="Item Name" id="item_name" type="text" class="validate">
+                <label for="item_name">Item Name</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input placeholder="Item Cost" id="item_cost" type="text" class="validate">
+                <label for="item_cost">Item Cost</label>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Item Description" id="item_description" type="text" class="validate">
+                <label for="item_description">Item Description</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Item Image URL" id="item_img_url" type="text" class="validate">
+                <label for="item_img_url">Item Image URL</label>
+              </div>
+            </div>
+
+          </form>
         </div>
       </div>
-    </div>
-  {% endfor %}
-</div>
+
+
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn" id="add_btn">Add</a>
+      </div>
+
+  </div>
+
+  <div class="row">
+  {% for i in campaign.campaign_items %}
+     <div class="col s4">
+       <div class="card">
+         <div class="card-image">
+           <img src="{{i.item_img_url}}">
+           <!-- <span class="card-title">{{i.item_name}}</span> -->
+         </div>
+         <div class="card-content">
+            <span class="card-title">{{i.item_name}}</span>
+           <p>{{i.item_description}}</p>
+           <p class=" green-text darken-2">${{i.item_cost_formatted}}</p>
+           {% if charity_logged_in %}
+           <a href="#" data-campaign-item-id="{{i.id}}" class="delete-campaign-item">
+             <i class="material-icons">delete</i>
+           </a>
+           {% endif %}
+         </div>
+       </div>
+     </div>
+    {% endfor %}
+  </div>
+
+
 </div>
 {% endblock %}

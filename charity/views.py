@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import CharityProfile, Campaign
+from .models import CharityProfile, Campaign, CampaignItem
 
 # Create your views here.
 # class CharityProfileDetail(View):
@@ -58,13 +58,22 @@ def charity(request, charity_name, charity_id):
     )
 
     charity = CharityProfile.objects.get(pk=charity_id)
+
+    campaign_id = request.GET.get('campaign_id')
+    print(campaign_id)
+    if campaign_id is None:
+        campaign = charity.campaign_set.all()[0]
+    else:
+        campaign = Campaign.objects.get(pk=campaign_id)
+
     return render(
         request,
         'charity.html',
         {
             'user': request.user,
             'charity': charity,
-            'charity_logged_in': charity_logged_in
+            'charity_logged_in': charity_logged_in,
+            'campaign': campaign,
         },
     )
 
@@ -97,3 +106,34 @@ def charities(request):
         'charities.html',
         {'user': request.user, 'items': items},
     )
+
+@csrf_exempt
+def add_campaign_item(request, campaign_id):
+    campaign = Campaign.objects.get(pk=campaign_id)
+
+    campaign_item = CampaignItem(
+        campaign=campaign,
+        **request.POST.dict()
+    )
+    campaign_item.save()
+
+    return JsonResponse({
+        'success': True,
+    })
+
+@csrf_exempt
+def delete_campaign_item(request, campaign_item_id):
+    campaign_item = CampaignItem.objects.get(pk=campaign_item_id)
+    campaign_item.delete()
+
+    return JsonResponse({
+        'success': True,
+    })
+
+# def featured_charity(request):
+#     feature = CharityProfile.objects.filter(is_displayed=True)
+#
+#     return render(
+#         request,
+#         'index.html'
+#     )
