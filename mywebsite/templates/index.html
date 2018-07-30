@@ -5,63 +5,75 @@
 <div class="row no-space">
     <div class="col no-space">
       <div class="card no-space">
-        <div class="card-image">
-          <img src="{% static 'bw_dog.jpg' %}">
+        <div class="card-image ">
+          <picture>
+          <source media="(max-width: 700px)" srcset="static/bw_tall_dog.jpg"/>
+          <img class="heroimg" src="{% static 'bw_shorter_dog.jpg' %}"/>
+        </picture>
 
-
-          <span class="card-title herotextmain herotextborder">Find a Charity</span>
-					<span class="card-title herotextsub thin">Make an Impact and Donate Now</span>
-
-        </div>
+          <span class="card-title">
+              <div class="herotextborder">
+                <span class="herotextmain">Find a Charity</span>
+                <br/>
+                <span class="herotextsub thin">Make an Impact and<br/>Donate Now</span>
+              </div>
+          </span>
       </div>
     </div>
   </div>
 
-<a href="/charities">
  <div class="row">
- 	<div class="col s4 columns cyan darken-2">
-	 	<i class=" large material-icons columntext">search</i>
-	 	<p class="columntext">Find a Charity in Need</p>
- 	</div>
-</a>
-<a href="/charities">
- 	<div class="col s4 columns cyan darken-3">
- 		<i class=" large material-icons columntext">card_giftcard</i>
- 		<p class="columntext">Donate for a Cause</p>
- 	</div>
-</a>
 
-<a href="{% url 'signup' %}">
- 	<div class="col s4 columns cyan darken-4">
- 		<i class=" large material-icons columntext">people</i>
- 		<p class="columntext">Add a Charity</p>
- 	</div>
- </div>
-</a>
+  <a href="/charities">
+   	<div class="col l4 m4 s12 columns cyan darken-2">
+  	 	<i class="material-icons iconsize">search</i>
+  	 	<p class="columntext">Find a Charity in Need</p>
+   	</div>
+  </a>
 
- <div class="container">
- 	<h3 class="thin ">How can you help?</h3>
-  <p>Thousands of charities go unknown. Discover a charity today and make a contribution.</p>
- 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
- 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
- 	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
- 	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
- 	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
- </div>
+  <a href="/charities">
+   	<div class="col l4 m4 s12 columns cyan darken-3">
+   		<i class=" material-icons iconsize">card_giftcard</i>
+   		<p class="columntext">Donate for a Cause</p>
+   	</div>
+  </a>
 
-
- <div class="row container featuredboxshadow">
-
-   <div class="col s6 columns cyan darken-3 row leftfeaturedcharitybox">
-     <p class="feauturedcharitytext">FEATURED CHARITY</p>
-     <img src="{% static 'walkathon.jpg' %}" style="width:100%;">
-   </div>
-
-   <div class="col s6 columns cyan" style="height: 382px;">
-     <p class="rightfeaturedcharitybox">HELP FUND PATIENT CARE TO DEFEAT CHILDHOOD CANCER</p>
-     <a href="https://www.alexslemonade.org/campaign/stands-and-events/hold-walkathon" target="_blank"><p class="learnmorebox">Learn More</p></a>
-   </div>
+  <a href="{% url 'signup' %}">
+   	<div class="col l4 m4 s12 columns cyan darken-4">
+   		<i class="material-icons iconsize">people</i>
+   		<p class="columntext resize_text">Add a Charity</p>
+   	</div>
+  </a>
 
 </div>
+
+
+ <div class="container">
+ 	<h3 class="thin info_text ">How can you help?</h3>
+  <p class="info_sub_text">Thousands of charities go unknown. Discover a charity today and make a contribution.</p>
+ 	<p class="info_sub_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+ 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+ 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+ 	consequat.</p>
+ </div>
+{% if should_render_featured_charity %}
+<div class="row">
+  <div class="col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s12">
+    <div class="container">
+       <div class="card">
+
+          <div class="card-image">
+            <img class="activator" src="{{featured_charity.img_url}}">
+            <span class="card-title">Featured Charity</span>
+          </div>
+
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{featured_charity.name}}</span>
+            <p class="featurecharitydescription">{{featured_charity.bio}}</p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

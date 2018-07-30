@@ -9,7 +9,7 @@
     <div class="row">
       {% for i in items %}
         <a href="{{i.profile_url}}">
-          <div class="col s4 charity-tile">
+          <div class="col s12 m6 l4 charity-tile">
             <div class="card grey lighten-4">
 
               <div class="card-image waves-effect waves-block waves-light">
@@ -23,16 +23,15 @@
                 </span>
                 <p class="black-text">{{i.bio}}</p>
                 <p class=" green-text darken-3">+${{i.money_raised}}</p>
-                <!-- <p><a href="{{i.url}}" target="_blank">Visit our Website</a></p> --> <!--Option 2: Says Visit our Wbesite-->
-                  <!-- <i class="material-icons"><a href="{{i.url}}" target="_blank">open_in_new</a></i> --><!-- Option 3: Icon Under Title-->
               </div>
 
-              {% for tag in i.tags %}
-                  <div class="chip">
-                    {{tag}}
-                    <i class="close material-icons">close</i>
-                  </div>
-              {% endfor %}
+              <div class="card-content">
+                {% for tag in i.all_tags %}
+                    <div class="chip">
+                      {{tag.name}}
+                    </div>
+                {% endfor %}
+              </div>
 
             </div>
           </div>

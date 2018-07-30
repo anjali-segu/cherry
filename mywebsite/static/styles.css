@@ -9,9 +9,8 @@
 	color: white;
 	font-size: 14px;
 }
-
-h2 {
-	color: blue;
+#long_bio {
+	height: 120px !important;
 }
 .background_color {
 	background:rgba(0,0,0,0.2);
@@ -61,48 +60,54 @@ h2 {
 .img {
   width: 100%;
   margin-bottom: none;
+	margin-left: none;
+	margin-right: none;
 
 }
 h3 {
   text-align: center;
 }
-.heroimg {
-  z-index: -1;
-}
-.herotextborder {
-	border: 3px solid white !important;
-	padding-bottom: 0 !important;
-	height:245px;
 
+.herotextborder {
+	/* border: 3px solid white !important;
+	padding-bottom: 0 !important;
+	height:245px; */
+
+	border: 3px solid #ffffff;
+	/* max-height: 10rem; */
+	padding: 0.5em !important;
+	background-color: rgba(0,0,0,0.2) !important;
+  /* padding: 0.5em !important; */
+  /* margin: 0 0 0.5rem 0.5rem !important; */
 
 }
 
 .herotextmain {
-	left: 55% !important;
-  top: 10% !important;
-  font-size: 6em !important;
-  color: #fefffc !important;
+	/* left: 55% !important;
+  top: 10% !important; */
+  font-size: 64px !important;
+  /* color: #fefffc !important; */
   font-weight: 600 !important;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: 'IBM Plex Sans Condensed', sans-serif; */
 
 }
 .herotextsub {
-  left: 55% !important;
+  /* left: 55% !important;
   top: 30% !important;
   font-size: 2.3em !important;
-  color: #fefffc !important;
-	font-weight: 200 !important;
+  color: #fefffc !important;*/
+	font-size: 32px !important;
+	font-weight: 200 !important
+	/* font-family: 'IBM Plex Sans Condensed', sans-serif; */
 
 }
-/*.herotextborder {
-	border: 3px solid white !important;
-}*/
 
 .columns {
   text-align: center;
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-size: 20px;
 	padding: 1em !important;
+	height: 10em;
 }
 
 
@@ -112,6 +117,10 @@ h3 {
 }
 .columntext {
 	color: rgba(255,255,255,0.84);
+}
+.iconsize{
+	font-size: 3.3rem;
+	color: white;
 }
 
 .charities-container {
@@ -128,51 +137,25 @@ h3 {
 }
 .findacharityhead{
 	text-align: center;
+	font-size: 3em;
 }
-.featuredboxshadow {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	height: 382px;
-}
-.feauturedcharitytext {
-	background-color: #212121;
-  font-family: 'Raleway', sans-serif;
-	color: white;
-	float: right;
- 	margin: 0 0 1.2em 0;
-	padding: .4em;
-}
-.leftfeaturedcharitybox {
-	margin-bottom: 0px;
-	padding: 0px !important;
-}
-.rightfeaturedcharitybox{
-text-align: left;
-font-family: 'Raleway', sans-serif;
-font-size: 38px;
-color: white;
-}
-.learnmorebox {
-	color: white;
-	font-size: 20px;
-	font-family: 'Raleway', sans-serif;
-	border: 3px solid white;
-	padding: 0 !important;
-	height: 41px;
-  width: 166px;
+.featurecharitydescription{
+	font-size: 1.2rem !important;
 }
 .charityinfobox {
 	background-color: white;
-	width:24em;
-	z-index: 1;
-	left: 68% !important;
-	top: 20% !important;
-	position: absolute;
+	margin: 0 11px !important;
 	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	padding-left: 11px;
-	padding-right: 11px;
+}
+.donatenowbox {
+	font-size: 27px !important;
+	/* box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important; */
+	left: 2em !important;
+	top: 3.7em;
+	position: absolute !important;
 }
 .charity_name_box {
-	font-size: 35px;
+	font-size: 4em;
 	font-family: 'IBM Plex Sans Condensed', sans-serif;
 	text-align: center;
 	margin-bottom: 7px;
@@ -183,7 +166,10 @@ color: white;
 	text-align: left;
 	font-weight: 200;
 	font-size: 25px;
-	margin-top:0;
+	margin-bottom: 60px !important;
+}
+.progressbar {
+	margin-top: 60px !important;
 }
 .money_title_box{
 	font-size: 22px;
@@ -191,31 +177,16 @@ color: white;
 }
 .descriptive_photo {
 	width: 100%;
-	height: 38em;
-	z-index: -1;
-	margin-bottom: none;
+	height: auto;
 }
 .money_num_size {
 	font-size: 20px;
 	margin-top: 0px;
 }
-.donatenowbox {
-	background-color: #212121;
-	color: white;
-	font-size: 20px;
-	font-weight:200;
-	text-align: center;
-  padding-bottom: 10px;
-  height: 40px;
-  padding-top: 5px;
-  width: 120px;
-	padding-right: 2px;
-	box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-}
 .needed_title {
 	color: #212121;
 	text-align: center;
+	font-size: 3em;
 }
 .edit_button {
 	z-index: 1 !important;
@@ -241,6 +212,199 @@ color: white;
 .addcampaign_btn{
 	position: absolute !important;
 	top: 45em !important;
-	left: 66% !important;
+	left: 78% !important;
 	bottom: 5px;
+}
+.campaign-img {
+	height: 250px;
+}
+.campaign-content {
+	min-height: 200px;
+}
+.charity-content {
+	height: 29.5em;
+}
+.info_text {
+	font-size: 3em;
+}
+.info_sub_text {
+	font-size: 1.2em;
+}
+
+
+/* For mobile portrait */
+@media only screen
+	and (min-device-width: 300px)
+	and (max-device-width: 700px)
+	and (orientation: portrait) {
+.heroimg {
+	height: auto;
+  width: 100% !important;
+}
+
+.herotextmain {
+	font-size: 32px !important;
+}
+.herotextsub {
+	font-size: 24px !important;
+}
+.columntext{
+	font-size: 1.3rem;
+}
+.iconsize{
+	font-size: 3.3rem;
+	color: white;
+}
+.columns {
+	height: 10rem;
+}
+.resize_text{
+	padding-right: 30px;
+  padding-left: 30px;
+}
+.info_text{
+	font-size: 2.3em;
+}
+.info_sub_text{
+	font-size: 1.1em;
+}
+.donatenowbox {
+	font-size: 17px !important;
+	left: 1em !important;
+	top: .5em;
+	position: relative!important;
+}
+.charity_name_box{
+	font-size: 2.8em;
+	position: relative;
+}
+.charity_bio_box {
+	font-size: 18px;
+	margin-bottom: 8px !important;
+}
+.progressbar {
+	margin-top: 20px !important;
+}
+.needed_title {
+
+	font-size: 2em;
+}
+.edit_button {
+	font-size: 2em;
+	left: 6% !important;
+	top: 7% !important;
+}
+.addcampaign_btn{
+	top: 43em !important;
+	left: 85% !important;
+	bottom: 5px;
+}
+.campaign-img {
+	height: 175px;
+}
+.campaign-content {
+	min-height: 200px
+}
+}
+/* For tablets */
+@media only screen and (min-device-width: 701px) and (max-device-width: 1200px)
+{
+	.herotextborder {
+		height:250px;
+	}
+	.columntext{
+		font-size: 1.3em;
+	}
+	.info_text{
+		font-size: 3em;
+	}
+	.info_sub_text{
+		font-size: 1.2em;
+	}
+	.donatenowbox {
+		font-size: 20px !important;
+		left: 1em !important;
+		top: .5em;
+		width: 160px !important;
+		height: 50px !important;
+		position: relative!important;
+	}
+	.charity_name_box{
+		font-size: 4em;
+		position: relative;
+	}
+	.charityinfobox{
+		top: 19% !important;
+	}
+	.charity_bio_box {
+		font-weight: 300;
+	}
+	.edit_button {
+		font-size: 2em;
+		left: 6% !important;
+		top: 15% !important;
+	}
+	.addcampaign_btn{
+		top: 42em !important;
+		left: 86% !important;
+		bottom: 5px;
+	}
+}
+
+@media only screen and (min-width: 701px) and (max-width: 1200px)
+{
+	.donatenowbox {
+		font-size: 20px !important;
+		left: 1em !important;
+		top: .5em;
+		width: 200px !important;
+		height: 50px !important;
+		position: relative!important;
+	}
+}
+/* For smaller desktop screens */
+@media only screen and (min-device-width: 1201px) and (max-device-width: 1365px) {
+	.herotextborder {
+		height:300px;
+	}
+	.herotextmain {
+		/* left: 60% !important;
+	  font-size: 5.3em !important;
+	  font-weight: 800 !important; */
+	}
+	.herotextsub {
+	  /* font-size: 2.2em !important;
+		font-weight: 200 !important;
+		left: 60% !important; */
+	}
+	.info_sub_text{
+		font-size: 1.4em;
+	}
+	/* .rightfeaturedcharitybox{
+		font-size: 2.2em;
+		padding: 20px 10px 10px 10px;
+		margin-bottom: 0px;
+		margin-top: 0px;
+		height: 19.1em;
+	}
+	.leftfeaturedcharitybox {
+		height: 19.1em;
+	}
+	.learnmorebox{
+		margin-top: 7px;
+		font-size: 25px;
+	}
+	.feauturedcharitytext {
+		margin: 0 0 .7em 0;
+		padding: .3em;
+		font-size: 1em;
+	} */
+
+	}
+	/* For smaller desktop screens */
+	@media only screen and (min-device-width: 1366px) {
+		.donatenowbox{
+			width: 250px !important;
+			height: 50px !important;
+		}
 }

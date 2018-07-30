@@ -42,6 +42,10 @@ $( document ).ready(function(){
     if (newBio && newBio !== '') {
       updatedFields.bio = newBio
     }
+    const newLongBio = $('#long_bio').val()
+    if (newLongBio && newLongBio !== '') {
+      updatedFields.long_bio = newLongBio
+    }
     const newURL = $('#url').val()
     if (newURL && newURL !== '') {
       updatedFields.charity_url = newURL
@@ -50,10 +54,20 @@ $( document ).ready(function(){
     if (newImgURL && newImgURL !== '') {
       updatedFields.img_url = newImgURL
     }
+    const updateTags = {}
+    let tag = null
+    const rawTags = $('*[data-name]').get()
+    for (let index = 0; index < rawTags.length; index++) {
+        updateTags[rawTags[index].dataset.name] = !!rawTags[index].checked
+    }
+    const formData = {
+      fields: updatedFields,
+      tags: updateTags
+    }
 
     $.post(
       `/charity/${$('#charity_current_name').val()}/${$('#charity_id').val()}/update/`,
-      updatedFields,
+      JSON.stringify(formData),
       function(response){
         location.reload()
       }

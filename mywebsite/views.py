@@ -29,8 +29,17 @@ def logout_route(request):
     return JsonResponse({'success':True})
 
 def index(request):
+    try:
+        featured_charity = CharityProfile.objects.filter(is_featured=True)[0]
+    except(IndexError):
+        featured_charity = None
+
     return render(
         request,
         'index.html',
-        {'user': request.user},
+        {
+            'user': request.user,
+            'featured_charity': featured_charity,
+            'should_render_featured_charity': featured_charity is not None,
+        },
     )

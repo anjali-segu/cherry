@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.http import JsonResponse
@@ -5,17 +7,8 @@ from django.shortcuts import render
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import CharityProfile, Campaign, CampaignItem
+from .models import CharityProfile, Campaign, CampaignItem, Tag
 
-# Create your views here.
-# class CharityProfileDetail(View):
-#
-#     def get(self, charity_name, charity_id, **kwargs):
-#         return render(
-#             request,
-#             'charity.html',
-#             {'user': request.user},
-#         )
 
 @csrf_exempt
 def signup_submit(request):
@@ -66,12 +59,21 @@ def charity(request, charity_name, charity_id):
     else:
         campaign = Campaign.objects.get(pk=campaign_id)
 
+    charity_tag_set = charity.tags_set()
+    all_tags = []
+    for tag in Tag.objects.order_by('name').all():
+        all_tags.append({
+            'name': tag.name,
+            'checked': 'checked' if tag.name in charity_tag_set else ''
+        })
+
     return render(
         request,
         'charity.html',
         {
             'user': request.user,
             'charity': charity,
+            'all_tags': all_tags,
             'charity_logged_in': charity_logged_in,
             'campaign': campaign,
         },
@@ -90,9 +92,22 @@ def charity_update(request, charity_name, charity_id):
             'success': False,
         })
 
-    updated_fields = request.POST.dict()
+    params = json.loads(request.body)
     charity_profile = CharityProfile.objects.filter(pk=charity_id)
-    charity_profile.update(**updated_fields)
+
+    charity_profile.update(**params['fields'])
+    charity_profile = charity_profile[0]
+    charity_tag_set = charity_profile.tags_set()
+    # Update tags based on tags param
+    for tag_name, should_tag in params['tags'].items():
+        # Only add tag if tag_name from form is True and tag_name is not in charity's tags
+        print(tag_name, should_tag)
+        if should_tag and tag_name not in charity_tag_set:
+            charity_profile.tags.add(Tag.objects.get(name=tag_name))
+        # Only remove tag if if tag_name from form is False and the tag_name is currently in charity's tags
+        elif should_tag == False and tag_name in charity_tag_set:
+            charity_profile.tags.remove(Tag.objects.get(name=tag_name))
+
     return JsonResponse({
         'success': True,
     })
@@ -129,11 +144,3 @@ def delete_campaign_item(request, campaign_item_id):
     return JsonResponse({
         'success': True,
     })
-
-# def featured_charity(request):
-#     feature = CharityProfile.objects.filter(is_displayed=True)
-#
-#     return render(
-#         request,
-#         'index.html'
-#     )

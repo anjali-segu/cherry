@@ -23,7 +23,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
 urlpatterns = [
-    url(r'^$', core_views.index),
     url(r'^login/$', core_views.login_route, name='login'),
     url(r'^logout/$', core_views.logout_route, name='logout'),
     url(r'^signup/$', charity_views.signup, name='signup'),
@@ -35,6 +34,7 @@ urlpatterns = [
     path('campaign/<campaign_id>/add/', charity_views.add_campaign_item),
     path('campaign-item/<campaign_item_id>/delete/', charity_views.delete_campaign_item),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', core_views.index),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

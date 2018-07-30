@@ -4,8 +4,41 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<img class="descriptive_photo" src="{{charity.img_url}}">
+<div class="row">
+  <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button>
+  <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons small">open_in_new</i></a></h1>
+</div>
 
+<div class="row">
+  <div class="col xl6 l12">
+  <img class="descriptive_photo" src="{{charity.img_url}}">
+  </div>
+      <div class="col xl6 l12">
+        <div class="card">
+          <div class="card-content charity-content">
+          <p>
+            {% for tag in charity.all_tags %}
+            <div class="chip">
+              <span>{{tag.name}}</span>
+            </div>
+            {% endfor %}
+
+          </p>
+
+          <p class="charity_bio_box black-text">{{charity.bio_detail}}</p>
+          <hr>
+          <div class="progress progressbar">
+            <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
+          </div>
+
+          <div>
+            <p class="money_raised_text">${{charity.money_raised}}</p>
+            <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
+          </div>
+
+      </div>
+    </div>
+</div>
 
 {% if charity_logged_in %}
  <a href="#edit" class="btn-floating btn-large cyan lighten-1 edit_button modal-trigger"><i class="material-icons">create</i></a>
@@ -35,6 +68,13 @@
 
            <div class="row">
              <div class="input-field col s12">
+                <textarea placeholder="{{charity.long_bio}}" id="long_bio" rows="4" class="materialize-textarea"></textarea>
+                <label for="long_bio">Long Bio</label>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="input-field col s12">
                <input id="url" placeholder="{{charity.charity_url}}" type="text">
                <label for="url">Charity Webpage</label>
              </div>
@@ -48,15 +88,17 @@
            </div>
           <!-- Checkboxes -->
            <div class="row">
+             {% for tag in all_tags %}
              <div class="col s4">
                <p>
                 <label>
-                  <input type="checkbox" class="filled-in" checked="checked" />
-                  <span>Animals</span>
+                  <input type="checkbox" class="filled-in update-tag" {{tag.checked}} data-name="{{tag.name}}" />
+                  <span>{{tag.name}}</span>
                 </label>
                </p>
             </div>
-
+            {% endfor %}
+<!--
            <div class="col s4">
                <p>
                 <label>
@@ -131,7 +173,7 @@
               <span>Human Rights</span>
             </label>
            </p>
-       </div>
+       </div> -->
      </div>
 
            <a class="waves-effect waves-light btn" id="update_btn">Update</a>
@@ -146,29 +188,37 @@
 {% endif %}
 
 
+<!-- <div class="row">
+    <div class="col xl12 l12 m12 s12">
+      <div class="card">
+        <div class="card-content">
+        <span>
+          <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a></h1>
+        </span>
 
-<div class="charityinfobox">
-    <span>
-      <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a></h1>
-    </span>
-
-    <p class="charity_bio_box black-text">{{charity.bio}}</p>
-    <hr>
+        <p class="charity_bio_box black-text">{{charity.bio_detail}}</p>
+        <hr>
 
 
-    <div class="progress" style="margin-top: 30px;">
-      <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
+        <div
+          class="progress"
+          style="margin-top: 30px;"
+        >
+          <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
+        </div>
+        <div>
+          <p class="money_raised_text">${{charity.money_raised}}</p>
+          <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
+        </div>
+
+        <p class="donatenowbox">Donate Now</p>
+
+      </div>
     </div>
-    <div>
-      <p class="money_raised_text">${{charity.money_raised}}</p>
-      <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
-    </div>
+  </div>
+</div> -->
 
-    <p class="donatenowbox">Donate Now</p>
-    <!-- Possibly add like twitter insta etc. handles -->
-</div>
 
-<div>
   <div class="row">
     <!-- Dropdown Structure -->
     <ul id="dropdown1" class="dropdown-content">
@@ -181,12 +231,14 @@
   </div>
 
   <div class="row">
-    <h2 class="thin needed_title">{{campaign.name}} Budget</h2>
+    <h2 class="thin needed_title">
+      {{campaign.name}} Budget
+      <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
+      {% if charity_logged_in %}
+        <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
+      {% endif %}
+    </h2>
     <!-- Dropdown Trigger -->
-    <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
-    {% if charity_logged_in %}
-      <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
-    {% endif %}
   </div>
 
   <!-- Add Campaign Modal -->
@@ -249,15 +301,16 @@
 
   </div>
 
+
   <div class="row">
   {% for i in campaign.campaign_items %}
-     <div class="col s4">
+     <div class="col s10 offset-s1 m6 l4">
        <div class="card">
          <div class="card-image">
-           <img src="{{i.item_img_url}}">
+           <img class="campaign-img" src="{{i.item_img_url}}">
            <!-- <span class="card-title">{{i.item_name}}</span> -->
          </div>
-         <div class="card-content">
+         <div class="card-content campaign-content">
             <span class="card-title">{{i.item_name}}</span>
            <p>{{i.item_description}}</p>
            <p class=" green-text darken-2">${{i.item_cost_formatted}}</p>
@@ -272,6 +325,4 @@
     {% endfor %}
   </div>
 
-
-</div>
 {% endblock %}

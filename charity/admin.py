@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from .models import CharityProfile, Campaign, CampaignItem
+from .models import CharityProfile, Campaign, CampaignItem, Tag
 
 class CharityProfileAdmin(admin.ModelAdmin):
     list_display = (
@@ -16,6 +16,7 @@ class CharityProfileAdmin(admin.ModelAdmin):
         'img_url',
         'money_raised',
         'date_created',
+        'is_featured'
 
     )
 
@@ -67,7 +68,16 @@ class CampaignItemAdmin(admin.ModelAdmin):
         )
 
 
+class TagAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'name',
+        'date_created',
+    )
+
+
 # Register your models here.
+admin.site.register(Tag, TagAdmin)
 admin.site.register(CharityProfile, CharityProfileAdmin)
 admin.site.register(Campaign, CampaignAdmin)
 admin.site.register(CampaignItem, CampaignItemAdmin)

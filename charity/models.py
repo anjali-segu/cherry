@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 
 # Create your models here.
+class Tag(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200, unique=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Tag: {self.name}'
+
 class CharityProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, null=True, blank=True, default=None, on_delete=models.CASCADE)
@@ -13,11 +21,16 @@ class CharityProfile(models.Model):
     name = models.CharField(max_length=200)
     charity_url = models.URLField()
     bio = models.TextField(null=True, blank=True, default=None)
+    long_bio = models.TextField(null=True, blank=True, default=None)
     img_url = models.URLField(null=True, blank=True, default=None)
     money_raised = models.IntegerField(null=True, blank=True, default=None)
     date_created = models.DateTimeField(auto_now_add=True)
     is_displayed = models.BooleanField(default=True)
-    # is_featured = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    tags = models.ManyToManyField(Tag)
+
+    def bio_detail(self):
+        return self.long_bio if self.long_bio is not None else self.bio
 
     def profile_url(self):
         return f'/charity/{self.name}/{self.id}/'
@@ -44,6 +57,12 @@ class CharityProfile(models.Model):
 
         percent_goal = math.floor(self.money_raised * 100 / total_desired)
         return percent_goal
+
+    def all_tags(self):
+        return self.tags.all()
+
+    def tags_set(self):
+        return set([tag.name for tag in self.all_tags()])
 
     def __str__(self):
         return f'Charity Profile: {self.name} ({self.id})'
