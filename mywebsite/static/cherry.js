@@ -11,7 +11,11 @@ $( document ).ready(function(){
       'password':$('#password').val()
     },
     function(response){
-      window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
+      if (response.is_admin) {
+          window.location.href = '/charities'
+      } else {
+          window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
+      }
     })
   })
   // this is how the logout button works

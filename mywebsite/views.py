@@ -17,7 +17,7 @@ def login_route(request):
             'success':user is not None,
             'charity_profile_name': charity_profile.name,
             'charity_profile_id': charity_profile.id,
-
+            'is_admin': user.is_staff,
         })
     return JsonResponse({
         'success': False,
