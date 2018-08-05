@@ -30,7 +30,7 @@ class CharityProfile(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def bio_detail(self):
-        return self.long_bio if self.long_bio is not None else self.bio
+        return self.long_bio if self.long_bio else self.bio
 
     def profile_url(self):
         return f'/charity/{self.name}/{self.id}/'
@@ -38,10 +38,16 @@ class CharityProfile(models.Model):
     def campaigns(self):
         return [campaign for campaign in self.campaign_set.all()]
 
+    def all_campaign_items(self):
+        return CampaignItem.objects.prefetch_related('campaign', 'campaign__charityprofile').filter(campaign__charityprofile_id=self.id)
+
     def total_goal(self):
-        all_campaign_items = CampaignItem.objects.prefetch_related('campaign', 'campaign__charityprofile').filter(campaign__charityprofile_id=self.id)
+        all_campaign_items = self.all_campaign_items()
         total_goal = all_campaign_items.aggregate(Sum('item_cost'))['item_cost__sum']
-        return math.floor(total_goal)
+        return math.floor(total_goal) if total_goal else 0
+
+    def has_campaign_items(self):
+        return len(self.all_campaign_items()) > 0
 
     def campaign_items(self):
         campaign = self.campaign_set.all()[0]
@@ -53,6 +59,8 @@ class CharityProfile(models.Model):
         """
         total_desired = self.total_goal()
         if not total_desired:
+            return 0
+        if not self.money_raised:
             return 0
 
         percent_goal = math.floor(self.money_raised * 100 / total_desired)

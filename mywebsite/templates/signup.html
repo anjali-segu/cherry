@@ -35,8 +35,35 @@
         </div>
       </div>
 
-        <a class="waves-effect waves-light btn" id="signup_submit">Sign Up</a>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#signup_modal" id="signup_submit">Sign Up</a>
+
 
     </form>
   </div>
+
+  <!-- Modal Structure -->
+  <div id="signup_modal" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <div id="signup-error" class="row hidden">
+          <p>Signup Failed. Please check you have entered all fields.</p>
+      </div>
+
+      <div id="signup-spinner" class="row hidden">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <span>Please wait</span>
+      </div>
+  </div>
+</div>
 {% endblock %}

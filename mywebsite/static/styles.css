@@ -1,3 +1,6 @@
+.hidden {
+	display: none !important;
+}
 .classic_font {
 	font-weight: 100;
 	color: white;
@@ -69,37 +72,20 @@ h3 {
 }
 
 .herotextborder {
-	/* border: 3px solid white !important;
-	padding-bottom: 0 !important;
-	height:245px; */
-
 	border: 3px solid #ffffff;
-	/* max-height: 10rem; */
 	padding: 0.5em !important;
 	background-color: rgba(0,0,0,0.2) !important;
-  /* padding: 0.5em !important; */
-  /* margin: 0 0 0.5rem 0.5rem !important; */
-
 }
 
 .herotextmain {
-	/* left: 55% !important;
-  top: 10% !important; */
   font-size: 64px !important;
-  /* color: #fefffc !important; */
   font-weight: 600 !important;
   font-family: 'IBM Plex Sans Condensed', sans-serif; */
 
 }
 .herotextsub {
-  /* left: 55% !important;
-  top: 30% !important;
-  font-size: 2.3em !important;
-  color: #fefffc !important;*/
 	font-size: 32px !important;
 	font-weight: 200 !important
-	/* font-family: 'IBM Plex Sans Condensed', sans-serif; */
-
 }
 
 .columns {
@@ -149,7 +135,6 @@ h3 {
 }
 .donatenowbox {
 	font-size: 27px !important;
-	/* box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important; */
 	left: 2em !important;
 	top: 3.7em;
 	position: absolute !important;
@@ -166,10 +151,8 @@ h3 {
 	text-align: left;
 	font-weight: 200;
 	font-size: 25px;
-	margin-bottom: 60px !important;
-}
-.progressbar {
-	margin-top: 60px !important;
+	margin-top: 10px !important;
+	margin-bottom: 40px !important;
 }
 .money_title_box{
 	font-size: 22px;
@@ -194,18 +177,19 @@ h3 {
 	left: 95% !important;
 	top: 12% !important;
 }
-
+.progressbar {
+	margin-top: 40px !important;
+}
 .money_raised_text{
 	font-weight: 300;
 	font-size: 30px;
 	color: #009688;
-	margin-top: 15px;
+	margin-top: 8px;
 	margin-bottom: 0px;
 }
 .goal_text {
 	font-size: 20px;
 	font-weight: 300;
-	/* color:#616161; */
 	color: #80cbc4;
 	margin-top: 0px;
 }
@@ -221,9 +205,7 @@ h3 {
 .campaign-content {
 	min-height: 200px;
 }
-.charity-content {
-	height: 29.5em;
-}
+
 .info_text {
 	font-size: 3em;
 }
@@ -286,17 +268,19 @@ h3 {
 	margin-top: 20px !important;
 }
 .needed_title {
-
 	font-size: 2em;
 }
 .edit_button {
-	font-size: 2em;
-	left: 6% !important;
-	top: 7% !important;
+	left: 80% !important;
+	top: 12% !important;
+	width: 53px !important;
+	height: 53px !important;
 }
 .addcampaign_btn{
-	top: 43em !important;
-	left: 85% !important;
+	top: 70rem !important;
+	left: 5% !important;
+	width: 47px !important;
+	height: 47px !important;
 	bottom: 5px;
 }
 .campaign-img {
@@ -305,6 +289,21 @@ h3 {
 .campaign-content {
 	min-height: 200px
 }
+}
+@media only screen and (min-width: 300px) and (max-width: 700px){
+	.donatenowbox {
+		font-size: 20px !important;
+		left: 1em !important;
+		top: .5em;
+		position: relative!important;
+		width: 232px;
+    padding-right: 0px;
+    padding-left: 0px;
+	}
+	/* .edit_button {
+		left: 8% !important;
+		top: 13% !important;
+	} */
 }
 /* For tablets */
 @media only screen and (min-device-width: 701px) and (max-device-width: 1200px)
@@ -337,12 +336,13 @@ h3 {
 		top: 19% !important;
 	}
 	.charity_bio_box {
-		font-weight: 300;
+		font-weight: 200;
+		font-size: 1.9em;
 	}
 	.edit_button {
 		font-size: 2em;
 		left: 6% !important;
-		top: 15% !important;
+		top: 30% !important;
 	}
 	.addcampaign_btn{
 		top: 42em !important;
@@ -361,6 +361,10 @@ h3 {
 		height: 50px !important;
 		position: relative!important;
 	}
+	/* .edit_button {
+		left: 6% !important;
+		top: 25% !important;
+	} */
 }
 /* For smaller desktop screens */
 @media only screen and (min-device-width: 1201px) and (max-device-width: 1365px) {

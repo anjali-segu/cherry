@@ -15,7 +15,7 @@
   </div>
       <div class="col xl6 l12">
         <div class="card">
-          <div class="card-content charity-content">
+          <div class="card-content">
           <p>
             {% for tag in charity.all_tags %}
             <div class="chip">
@@ -31,11 +31,12 @@
             <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
           </div>
 
-          <div>
+          {% if charity.has_campaign_items %}
             <p class="money_raised_text">${{charity.money_raised}}</p>
             <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
-          </div>
-
+          {% else %}
+            <p>No campaigns created, add a campaign below</p>
+          {% endif %}
       </div>
     </div>
 </div>
@@ -98,82 +99,7 @@
                </p>
             </div>
             {% endfor %}
-<!--
-           <div class="col s4">
-               <p>
-                <label>
-                  <input type="checkbox" class="filled-in" checked="checked" />
-                  <span>Community Development</span>
-                </label>
-               </p>
-           </div>
 
-           <div class="col s4">
-               <p>
-                <label>
-                  <input type="checkbox" class="filled-in" checked="checked" />
-                  <span>Arts/Culture</span>
-                </label>
-               </p>
-           </div>
-         </div>
-
-         <div class="row">
-           <div class="col s4">
-             <p>
-              <label>
-                <input type="checkbox" class="filled-in" checked="checked" />
-                <span>Education</span>
-              </label>
-             </p>
-          </div>
-
-         <div class="col s4">
-             <p>
-              <label>
-                <input type="checkbox" class="filled-in" checked="checked" />
-                <span>Environment</span>
-              </label>
-             </p>
-         </div>
-
-         <div class="col s4">
-             <p>
-              <label>
-                <input type="checkbox" class="filled-in" checked="checked" />
-                <span>Health</span>
-              </label>
-             </p>
-         </div>
-       </div>
-
-       <div class="row">
-         <div class="col s4">
-           <p>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>Human Services</span>
-            </label>
-           </p>
-        </div>
-
-       <div class="col s4">
-           <p>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>Research</span>
-            </label>
-           </p>
-       </div>
-
-       <div class="col s4">
-           <p>
-            <label>
-              <input type="checkbox" class="filled-in" checked="checked" />
-              <span>Human Rights</span>
-            </label>
-           </p>
-       </div> -->
      </div>
 
            <a class="waves-effect waves-light btn" id="update_btn">Update</a>
@@ -188,36 +114,6 @@
 {% endif %}
 
 
-<!-- <div class="row">
-    <div class="col xl12 l12 m12 s12">
-      <div class="card">
-        <div class="card-content">
-        <span>
-          <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons">open_in_new</i></a></h1>
-        </span>
-
-        <p class="charity_bio_box black-text">{{charity.bio_detail}}</p>
-        <hr>
-
-
-        <div
-          class="progress"
-          style="margin-top: 30px;"
-        >
-          <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
-        </div>
-        <div>
-          <p class="money_raised_text">${{charity.money_raised}}</p>
-          <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
-        </div>
-
-        <p class="donatenowbox">Donate Now</p>
-
-      </div>
-    </div>
-  </div>
-</div> -->
-
 
   <div class="row">
     <!-- Dropdown Structure -->
@@ -230,6 +126,7 @@
     </ul>
   </div>
 
+
   <div class="row">
     <h2 class="thin needed_title">
       {{campaign.name}} Budget
@@ -239,6 +136,32 @@
       {% endif %}
     </h2>
     <!-- Dropdown Trigger -->
+  </div>
+
+  <div class="row">
+    <div class="col s6 offset-s2">
+    <a href="#createcampaign"class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">cloud</i>Create Campaign</a>
+    </div>
+  </div>
+
+  <!-- Create Campaign Modal -->
+    <div id="createcampaign" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <input type="hidden" value="{{charity.id}}" id="charity_id"></input>
+              <div class="input-field col s12">
+                <input placeholder="ex: My First Campaign" id="new_campaign_name" type="text" class="validate">
+                <label for="new_campaign_name">Campaign Name</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn" id="create_campaign_btn">Create</a>
+      </div>
   </div>
 
   <!-- Add Campaign Modal -->

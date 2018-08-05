@@ -123,6 +123,22 @@ def charities(request):
     )
 
 @csrf_exempt
+def create_campaign(request):
+    form_data = request.POST.dict()
+    print(form_data)
+    charity_profile = CharityProfile.objects.get(pk=form_data['charity_id'])
+
+    campaign = Campaign(
+        name=form_data['new_campaign_name'],
+        charityprofile=charity_profile,
+    )
+    campaign.save()
+
+    return JsonResponse({
+        'success': True,
+    })
+
+@csrf_exempt
 def add_campaign_item(request, campaign_id):
     campaign = Campaign.objects.get(pk=campaign_id)
 

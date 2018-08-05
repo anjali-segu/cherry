@@ -31,6 +31,7 @@ urlpatterns = [
     path('charity/<charity_name>/<charity_id>/', charity_views.charity),
     path('charity/<charity_name>/<charity_id>/update/', charity_views.charity_update),
     url(r'^charity/create/$', charity_views.signup_submit),
+    path('campaign/create/', charity_views.create_campaign),
     path('campaign/<campaign_id>/add/', charity_views.add_campaign_item),
     path('campaign-item/<campaign_item_id>/delete/', charity_views.delete_campaign_item),
     url(r'^admin/', admin.site.urls),
