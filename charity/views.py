@@ -17,13 +17,15 @@ def signup_submit(request):
     name = request.POST.get('name', None)
     charity_url = request.POST.get('charity_url', None)
     email = request.POST.get('email', None)
+    bio = request.POST.get('bio', None)
+    campaign_name = request.POST.get('campaign_name', None)
     user = User(username=username, password=password, email=email)
     user.set_password(password)
     user.save()
     login(request, user)
-    charity_profile = CharityProfile(user=user, name=name, charity_url=charity_url)
+    charity_profile = CharityProfile(user=user, name=name, charity_url=charity_url, bio=bio)
     charity_profile.save()
-    campaign = Campaign(charityprofile=charity_profile)
+    campaign = Campaign(charityprofile=charity_profile, name=campaign_name)
     campaign.save()
     return JsonResponse({
         'user_id': user.id,

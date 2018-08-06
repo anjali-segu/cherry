@@ -38,20 +38,6 @@ $( document ).ready(function(){
       window.location.href = '/'
     })
   })
-  // this is how the signup button works
-  // $('#signup_submit').click(function(){
-  //   $.post('/charity/create/',{
-  //     'username':$('#new_user_name').val(),
-  //     'password':$('#new_password').val(),
-  //     'email': $('#email').val(),
-  //     'name':$('#new_charity_name').val(),
-  //     'charity_url':$('#new_charity_url').val(),
-  //   },function(response){
-  //     window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
-  //   })
-  // })
-
-
   //signup spinner works
   $('#signup_submit').click(function(){
       $('#signup-spinner').removeClass('hidden')
@@ -64,6 +50,8 @@ $( document ).ready(function(){
           'email': $('#email').val(),
           'name':$('#new_charity_name').val(),
           'charity_url':$('#new_charity_url').val(),
+          'bio': $('#new_charity_bio').val(),
+          'campaign_name': $('#new_charity_campaign_name').val(),
         },function(response){
           window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
         })
@@ -129,7 +117,7 @@ $( document ).ready(function(){
     )
   })
   // This is how we update the campaign item form
-  $('#add_btn').click(function() {
+  $('#add_campaign_item').click(function() {
     const campaignId = $('#campaign_selected option:selected').val()
     const newItem = {
       'item_name': $('#item_name').val(),

@@ -82,6 +82,9 @@ class Campaign(models.Model):
     name = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    def formatted_name(self):
+        return self.name.title()
+
     def campaign_items(self):
         return [item for item in self.campaignitem_set.all()]
 

@@ -35,7 +35,7 @@
             <p class="money_raised_text">${{charity.money_raised}}</p>
             <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
           {% else %}
-            <p>No campaigns created, add a campaign below</p>
+            <p>No campaigns items created, add a campaign below</p>
           {% endif %}
       </div>
     </div>
@@ -129,20 +129,25 @@
 
   <div class="row">
     <h2 class="thin needed_title">
-      {{campaign.name}} Budget
+      {{campaign.formatted_name}} Budget
       <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
-      {% if charity_logged_in %}
+      <!-- {% if charity_logged_in %}
         <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
-      {% endif %}
+      {% endif %} -->
     </h2>
     <!-- Dropdown Trigger -->
   </div>
 
-  <div class="row">
-    <div class="col s6 offset-s2">
-    <a href="#createcampaign"class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">cloud</i>Create Campaign</a>
+  {% if charity_logged_in %}
+    <div class="row">
+      <div class="col s6">
+        <a href="#createcampaign" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add</i>Create Campaign</a>
+      </div>
+      <div class="col s6">
+          <a href="#addcampaignitem" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add</i>Add Campaign Item</a>
+      </div>
     </div>
-  </div>
+  {% endif %}
 
   <!-- Create Campaign Modal -->
     <div id="createcampaign" class="modal">
@@ -165,7 +170,7 @@
   </div>
 
   <!-- Add Campaign Modal -->
-  <div id="addcampaign" class="modal">
+  <div id="addcampaignitem" class="modal">
 
       <div class="modal-content">
         <div class="row">
@@ -219,7 +224,7 @@
 
 
       <div class="modal-footer">
-        <a class="waves-effect waves-light btn" id="add_btn">Add</a>
+        <a class="waves-effect waves-light btn" id="add_campaign_item">Add</a>
       </div>
 
   </div>
