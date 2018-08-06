@@ -3,6 +3,12 @@
 {% block content %}
 <div class="row container" style=" margin-top: 4em;">
     <form class="col s12">
+      <div class="row hidden" id="signUpFormError">
+        <div class="col s12 form_error">
+          <p id="signUpFormErrorContent"></p>
+        </div>
+      </div>
+
       <div class="row">
         <div class="input-field col s6">
           <input placeholder="Placeholder" id="new_user_name" type="text" class="validate">
@@ -48,7 +54,7 @@
           </div>
 
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#signup_modal" id="signup_submit">Sign Up</a>
+        <a class="waves-effect waves-light btn modal-trigger disabled" href="#signup_modal" id="signup_submit">Sign Up</a>
 
 
     </form>
@@ -57,11 +63,6 @@
   <!-- Modal Structure -->
   <div id="signup_modal" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <div id="signup-error" class="row hidden">
-          <p>Signup Failed. Please check you have entered all fields.</p>
-      </div>
-
       <div id="signup-spinner" class="row hidden">
         <div class="preloader-wrapper big active">
           <div class="spinner-layer spinner-blue-only">

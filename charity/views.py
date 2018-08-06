@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
 from django.views.decorators.csrf import csrf_exempt
+from django.db.utils import IntegrityError
 
 from .models import CharityProfile, Campaign, CampaignItem, Tag
 
@@ -19,9 +20,14 @@ def signup_submit(request):
     email = request.POST.get('email', None)
     bio = request.POST.get('bio', None)
     campaign_name = request.POST.get('campaign_name', None)
-    user = User(username=username, password=password, email=email)
-    user.set_password(password)
-    user.save()
+
+    try:
+        user = User(username=username, password=password, email=email)
+        user.set_password(password)
+        user.save()
+    except(IntegrityError):
+        return JsonResponse({'success': False, 'message': 'Username already exists.'})
+
     login(request, user)
     charity_profile = CharityProfile(user=user, name=name, charity_url=charity_url, bio=bio)
     charity_profile.save()

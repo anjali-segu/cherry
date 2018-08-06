@@ -38,6 +38,36 @@ $( document ).ready(function(){
       window.location.href = '/'
     })
   })
+  const validateEmail = function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+  // Sign form validation
+  const isSignupFormValid = function () {
+    return (
+      ($('#new_user_name').val() && $('#new_user_name').val() !== '') &&
+      ($('#new_password').val() && $('#new_password').val() !== '') &&
+      ($('#email').val() && $('#email').val() !== '' && validateEmail($('#email').val())) &&
+      ($('#new_charity_name').val() && $('#new_charity_name').val() !== '') &&
+      ($('#new_charity_url').val() && $('#new_charity_url').val() !== '') &&
+      ($('#new_charity_bio').val() && $('#new_charity_bio').val() !== '') &&
+      ($('#new_charity_campaign_name').val() && $('#new_charity_campaign_name').val() !== '')
+    )
+  }
+  const toggleSignupSubmit = function () {
+    if (isSignupFormValid() && $('#signup_submit').hasClass('disabled')) {
+      $('#signup_submit').removeClass('disabled')
+    } else if (!isSignupFormValid() && !$('#signup_submit').hasClass('disabled')) {
+      $('#signup_submit').addClass('disabled')
+    }
+  }
+  $('#new_user_name').keyup(toggleSignupSubmit)
+  $('#new_password').keyup(toggleSignupSubmit)
+  $('#email').keyup(toggleSignupSubmit)
+  $('#new_charity_name').keyup(toggleSignupSubmit)
+  $('#new_charity_url').keyup(toggleSignupSubmit)
+  $('#new_charity_bio').keyup(toggleSignupSubmit)
+  $('#new_charity_campaign_name').keyup(toggleSignupSubmit)
   //signup spinner works
   $('#signup_submit').click(function(){
       $('#signup-spinner').removeClass('hidden')
@@ -53,7 +83,13 @@ $( document ).ready(function(){
           'bio': $('#new_charity_bio').val(),
           'campaign_name': $('#new_charity_campaign_name').val(),
         },function(response){
-          window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
+          if (response.success) {
+              window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
+          } else {
+              $('#signUpFormErrorContent').text(response.message)
+              $('#signUpFormError').removeClass('hidden')
+              $('#signup_modal').modal('close')
+          }
         })
 
       }, 2000)
