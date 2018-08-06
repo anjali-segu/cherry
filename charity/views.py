@@ -120,14 +120,26 @@ def charity_update(request, charity_name, charity_id):
         'success': True,
     })
 
-
 def charities(request):
-    items =  CharityProfile.objects.filter(is_displayed=True)
+    tag = request.GET.get('tag')
+    name = request.GET.get('name')
+    if tag:
+        items = CharityProfile.objects.filter(
+            is_displayed=True,
+            tags__name__icontains=tag
+        )
+    elif name:
+        items = CharityProfile.objects.filter(
+            is_displayed=True,
+            name__icontains=name
+        )
+    else:
+        items = CharityProfile.objects.filter(is_displayed=True)
 
     return render(
         request,
         'charities.html',
-        {'user': request.user, 'items': items},
+        {'user': request.user, 'items': items, 'no_items': len(items) <= 0},
     )
 
 @csrf_exempt

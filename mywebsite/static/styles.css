@@ -1,6 +1,9 @@
 .hidden {
 	display: none !important;
 }
+.center-content {
+	text-align: center !important;
+}
 .classic_font {
 	font-weight: 100;
 	color: white;

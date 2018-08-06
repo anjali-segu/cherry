@@ -4,6 +4,47 @@ $( document ).ready(function(){
   $('.modal').modal();
   $('.dropdown-trigger').dropdown();
   $('select').formSelect();
+  // Intitialization of auto complete
+  // NOTE: update tags as your include more on the backend
+  const searchData = {
+    "research": '/static/tag.svg',
+    "health": '/static/tag.svg',
+    "animals": '/static/tag.svg',
+    "environment": '/static/tag.svg',
+    "education": '/static/tag.svg',
+    "human rights": '/static/tag.svg',
+    "community development": '/static/tag.svg',
+    "arts/culture": '/static/tag.svg',
+    "human services": '/static/tag.svg',
+  }
+  $('input.autocomplete').autocomplete({
+    data: searchData,
+  });
+  $('#autocomplete-input').keyup(function() {
+    const searchText = $('#autocomplete-input').val()
+    if (searchText && searchText !== '' && searchText.toLowerCase() in searchData) {
+      $('#autocomplete-help').text(`Search for charities tagged with "${searchText}"`)
+    } else if (searchText && searchText !== '') {
+      $('#autocomplete-help').text(`Search for charities like "${searchText}"`)
+    } else {
+      $('#autocomplete-help').text('Search by name, category...')
+    }
+  });
+  $('#searchSubmit').submit(function (event) {
+    event.preventDefault()
+    const searchText = $('#autocomplete-input').val()
+    $('#default-results').addClass('hidden')
+    $('#fetching-search').removeClass('hidden')
+
+    if (searchText && searchText !== '' && searchText.toLowerCase() in searchData) {
+      // Find charities that are tagged with searchText
+      window.location.href = `/charities/?tag=${searchText}`
+    } else if (searchText && searchText !== '') {
+      window.location.href = `/charities/?name=${searchText}`
+    } else {
+      window.location.href = '/charities/'
+    }
+  })
   // this is how the login button works
   $('#login_btn').click(function(){
     // First reveal the spinner component by removing hidden class
