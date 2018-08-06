@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 
+DEFAULT_IMAGE = '/static/cherry_giver_logo_default.png'
+
 # Create your models here.
 class Tag(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -28,6 +30,9 @@ class CharityProfile(models.Model):
     is_displayed = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag)
+
+    def formatted_image(self):
+        return self.img_url if self.img_url else DEFAULT_IMAGE
 
     def bio_detail(self):
         return self.long_bio if self.long_bio else self.bio

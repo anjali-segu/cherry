@@ -117,6 +117,10 @@ h3 {
 	padding: 0.25rem !important;
 }
 
+.charity-tile-content {
+	min-height: 550px;
+}
+
 .charity-tile > .card {
 	margin-bottom: 0;
 	margin-top: 0;
