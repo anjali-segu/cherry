@@ -4,6 +4,9 @@
 .center-content {
 	text-align: center !important;
 }
+.cherry_giver_logo_text {
+	font-size: 1.95rem !important; 
+}
 .classic_font {
 	font-weight: 100;
 	color: white;
@@ -121,7 +124,7 @@ h3 {
 }
 
 .charity-tile-content {
-	min-height: 550px;
+	min-height: 560px;
 }
 
 .charity-tile > .card {
@@ -142,9 +145,10 @@ h3 {
 }
 .donatenowbox {
 	font-size: 27px !important;
-	left: 2em !important;
-	top: 3.7em;
-	position: absolute !important;
+}
+.editbox {
+	font-size: 27px !important;
+	line-height: 50px !important;
 }
 .charity_name_box {
 	font-size: 4em;
@@ -219,6 +223,12 @@ h3 {
 .info_sub_text {
 	font-size: 1.2em;
 }
+.error_format {
+	background-color: #f77165;
+	border: 3px solid #b71c1c;
+	border-radius: 10px;
+	padding: 5px;
+}
 
 
 /* For mobile portrait */
@@ -259,9 +269,12 @@ h3 {
 }
 .donatenowbox {
 	font-size: 17px !important;
-	left: 1em !important;
-	top: .5em;
-	position: relative!important;
+}
+.editbox {
+	font-size: 17px !important;
+	margin-top: 10px;
+	height: 35px !important;
+	line-height: 37px !important;
 }
 .charity_name_box{
 	font-size: 2.8em;
@@ -300,17 +313,18 @@ h3 {
 @media only screen and (min-width: 300px) and (max-width: 700px){
 	.donatenowbox {
 		font-size: 20px !important;
-		left: 1em !important;
-		top: .5em;
-		position: relative!important;
 		width: 232px;
     padding-right: 0px;
     padding-left: 0px;
 	}
-	/* .edit_button {
-		left: 8% !important;
-		top: 13% !important;
-	} */
+	.editbox {
+		font-size: 20px !important;
+		width: 232px;
+    padding-right: 0px;
+    padding-left: 0px;
+		line-height: 37px;
+		margin-top: 10px;
+	}
 }
 /* For tablets */
 @media only screen and (min-device-width: 701px) and (max-device-width: 1200px)
@@ -329,11 +343,15 @@ h3 {
 	}
 	.donatenowbox {
 		font-size: 20px !important;
-		left: 1em !important;
-		top: .5em;
 		width: 160px !important;
 		height: 50px !important;
-		position: relative!important;
+
+	}
+	.editbox {
+		font-size: 20px !important;
+		width: 160px !important;
+		height: 50px !important;
+		line-height: 50px !important;
 	}
 	.charity_name_box{
 		font-size: 4em;
@@ -362,59 +380,32 @@ h3 {
 {
 	.donatenowbox {
 		font-size: 20px !important;
-		left: 1em !important;
-		top: .5em;
 		width: 200px !important;
 		height: 50px !important;
-		position: relative!important;
 	}
-	/* .edit_button {
-		left: 6% !important;
-		top: 25% !important;
-	} */
+	.editbox {
+		font-size: 20px !important;
+		width: 200px !important;
+		height: 50px !important;
+	}
+
 }
 /* For smaller desktop screens */
 @media only screen and (min-device-width: 1201px) and (max-device-width: 1365px) {
 	.herotextborder {
 		height:300px;
 	}
-	.herotextmain {
-		/* left: 60% !important;
-	  font-size: 5.3em !important;
-	  font-weight: 800 !important; */
-	}
-	.herotextsub {
-	  /* font-size: 2.2em !important;
-		font-weight: 200 !important;
-		left: 60% !important; */
-	}
 	.info_sub_text{
 		font-size: 1.4em;
 	}
-	/* .rightfeaturedcharitybox{
-		font-size: 2.2em;
-		padding: 20px 10px 10px 10px;
-		margin-bottom: 0px;
-		margin-top: 0px;
-		height: 19.1em;
-	}
-	.leftfeaturedcharitybox {
-		height: 19.1em;
-	}
-	.learnmorebox{
-		margin-top: 7px;
-		font-size: 25px;
-	}
-	.feauturedcharitytext {
-		margin: 0 0 .7em 0;
-		padding: .3em;
-		font-size: 1em;
-	} */
-
 	}
 	/* For smaller desktop screens */
 	@media only screen and (min-device-width: 1366px) {
 		.donatenowbox{
+			width: 250px !important;
+			height: 50px !important;
+		}
+		.editbox{
 			width: 250px !important;
 			height: 50px !important;
 		}

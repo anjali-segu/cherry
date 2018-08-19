@@ -57,6 +57,7 @@
  	consequat.</p>
  </div>
 {% if should_render_featured_charity %}
+<a href="{{featured_charity.profile_url}}">
 <div class="row">
   <div class="col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s12">
     <div class="container">
@@ -75,5 +76,6 @@
     </div>
   </div>
 </div>
+</a>
 {% endif %}
 {% endblock %}

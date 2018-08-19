@@ -1,6 +1,8 @@
 {% extends 'base_with_navbar.html' %}
 
 {% block content %}
+<h2 class="thin findacharityhead">Create an Account</h2>
+<p class="center-content">Signup/Login only applies to charities. If you are a user click on "Find a Charity"</p>
 <div class="row container" style=" margin-top: 4em;">
     <form class="col s12">
       <div class="row hidden" id="signUpFormError">
@@ -10,12 +12,13 @@
       </div>
 
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col l6 m6 s12">
+          <i class="material-icons prefix">lock</i>
           <input placeholder="Placeholder" id="new_user_name" type="text" class="validate">
           <label for="new_user_name">Username</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col l6 m6 s12">
           <input id="new_password" type="password" class="validate">
           <label for="new_password">Password</label>
         </div>
@@ -23,38 +26,66 @@
 
 
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">create</i>
           <input id="new_charity_name" type="text" class="validate">
           <label for="new_charity_name">Charity Name</label>
         </div>
 
-        <div class="input-field col s6">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
           <input id="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">link</i>
           <input id="new_charity_url" type="text" class="validate">
           <label for="new_charity_url">Charity Webpage</label>
         </div>
       </div>
 
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12">
+          <i href="#charity_bio_info_modal" class="material-icons prefix modal-trigger">info_outline</i>
           <input id="new_charity_bio" type="text" class="validate">
           <label for="new_charity_bio">Charity Bio</label>
         </div>
+      </div>
+
+      <!-- Charity Bio info Modal -->
+      <div id="charity_bio_info_modal" class="modal">
+        <div class="modal-content">
+          <p class="center-content">Your charity bio is your opportunity to explain your mission. We reccomend 2-3 sentences. You will have a chance later to create a longer bio.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+      </div>
 
         <div class="row">
-          <div class="input-field col s6">
+          <div class="input-field col s12">
+            <i href="#campaign_name_info_modal" class="material-icons prefix modal-trigger">info_outline</i>
             <input id="new_charity_campaign_name" type="text" class="validate">
             <label for="new_charity_campaign_name">Campaign Name</label>
           </div>
+        </div>
+
+
+        <!-- Campaign name info Modal -->
+        <div id="campaign_name_info_modal" class="modal">
+          <div class="modal-content">
+            <p>This is a label for what your current project or goal for receiving donations.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+          </div>
+        </div>
 
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger disabled" href="#signup_modal" id="signup_submit">Sign Up</a>
+        <a class="waves-effect waves-light btn-large modal-trigger disabled" href="#signup_modal" id="signup_submit" style="float:right;">Sign Up</a>
 
 
     </form>

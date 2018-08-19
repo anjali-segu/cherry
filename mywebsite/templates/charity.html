@@ -5,15 +5,30 @@
 
 {% block content %}
 <div class="row">
-  <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button>
+  <!-- <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button> -->
   <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons small">open_in_new</i></a></h1>
 </div>
 
 <div class="row">
-  <div class="col xl6 l12">
+    <div class="col l6 m6 s12 center-content">
+    <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button>
+    </div>
+
+    {% if charity_logged_in %}
+    <div class="col l6 m6 s12 center-content">
+    <a href="#edit" class="waves-effect waves-light thin editbox btn modal-trigger"><i class="material-icons left">create</i>Edit</a>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+<div class="row">
+  <div class="col xl6 l12 m12 s12">
   <img class="descriptive_photo" src="{{charity.formatted_image}}">
   </div>
-      <div class="col xl6 l12">
+      <div class="col xl6 l12 m12 s12">
         <div class="card">
           <div class="card-content">
           <p>
@@ -35,18 +50,18 @@
             <p class="money_raised_text">${{charity.money_raised}}</p>
             <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
           {% else %}
-            <p>No campaigns items created, add a campaign below</p>
+            <p class="thin" style="font-size: 1.2em;">No campaigns items created, add campaign items below</p>
           {% endif %}
       </div>
     </div>
 </div>
 
-{% if charity_logged_in %}
- <a href="#edit" class="btn-floating btn-large cyan lighten-1 edit_button modal-trigger"><i class="material-icons">create</i></a>
+
  <!-- Edit Modal -->
    <div id="edit" class="modal">
      <div class="modal-content">
-       <h4>Edit Page *leave field unchanged if no change*</h4>
+       <h4>Edit Page</h4>
+       <p>*leave field unchanged if no edit*</p>
 
        <div class="row">
          <form class="col s12">
@@ -55,6 +70,7 @@
 
            <div class="row">
              <div class="input-field col s12">
+               <i class="material-icons prefix">person</i>
                <input id="name" placeholder="{{charity.name}}" type="text">
                <label for="name">Charity Name</label>
              </div>
@@ -62,6 +78,7 @@
 
            <div class="row">
              <div class="input-field col s12">
+               <i class="material-icons prefix">create</i>
                <input placeholder="{{charity.bio}}" id="bio" type="text">
                <label for="bio">Bio</label>
              </div>
@@ -69,6 +86,7 @@
 
            <div class="row">
              <div class="input-field col s12">
+               <i class="material-icons prefix">create</i>
                 <textarea placeholder="{{charity.long_bio}}" id="long_bio" rows="4" class="materialize-textarea"></textarea>
                 <label for="long_bio">Long Bio</label>
              </div>
@@ -76,6 +94,7 @@
 
            <div class="row">
              <div class="input-field col s12">
+               <i class="material-icons prefix">link</i>
                <input id="url" placeholder="{{charity.charity_url}}" type="text">
                <label for="url">Charity Webpage</label>
              </div>
@@ -83,14 +102,17 @@
 
            <div class="row">
              <div class="input-field col s12">
+               <i class="material-icons prefix">image</i>
                <input id="img_url" placeholder="{{charity.img_url}}" type="text">
                <label for="img_url">Image URL</label>
              </div>
            </div>
+
+           <p class="thin" style="font-size:1.7em;">Check off categories that apply:</p>
           <!-- Checkboxes -->
            <div class="row">
              {% for tag in all_tags %}
-             <div class="col s4">
+             <div class="col s12 m6 l4">
                <p>
                 <label>
                   <input type="checkbox" class="filled-in update-tag" {{tag.checked}} data-name="{{tag.name}}" />
@@ -102,7 +124,7 @@
 
      </div>
 
-           <a class="waves-effect waves-light btn" id="update_btn">Update</a>
+           <a class="waves-effect waves-light btn" style="float: right;"id="update_btn">Update</a>
 
          </form>
        </div>
@@ -111,7 +133,7 @@
        <a href="#" class="modal-close waves-effect waves-green btn-flat">Close</a>
      </div>
    </div>
-{% endif %}
+
 
 
 
@@ -140,10 +162,10 @@
 
   {% if charity_logged_in %}
     <div class="row">
-      <div class="col s6">
+      <div class="col l6 m6 s6 center-content">
         <a href="#createcampaign" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add</i>Create Campaign</a>
       </div>
-      <div class="col s6">
+      <div class="col l6 m6 s6 center-content">
           <a href="#addcampaignitem" class="waves-effect waves-light btn modal-trigger"><i class="material-icons left">add</i>Add Campaign Item</a>
       </div>
     </div>
