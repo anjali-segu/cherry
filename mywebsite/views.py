@@ -43,3 +43,9 @@ def index(request):
             'should_render_featured_charity': featured_charity is not None,
         },
     )
+
+def team(request):
+    return render(
+        request,
+        'team.html',
+    )

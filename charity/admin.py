@@ -14,7 +14,7 @@ class CharityProfileAdmin(admin.ModelAdmin):
         '_profile_url',
         'bio',
         'img_url',
-        'money_raised',
+        # 'money_raised',
         'date_created',
         'is_featured'
 

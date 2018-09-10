@@ -25,7 +25,7 @@ class CharityProfile(models.Model):
     bio = models.TextField(null=True, blank=True, default=None)
     long_bio = models.TextField(null=True, blank=True, default=None)
     img_url = models.URLField(null=True, blank=True, default=None)
-    money_raised = models.IntegerField(null=True, blank=True, default=None)
+    # money_raised = models.IntegerField(null=True, blank=True, default=None)
     date_created = models.DateTimeField(auto_now_add=True)
     is_displayed = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
@@ -58,6 +58,13 @@ class CharityProfile(models.Model):
         campaign = self.campaign_set.all()[0]
         return campaign.campaignitem_set.all()
 
+    def money_raised(self):
+        money_raised_in_cents = self.donation_set.all().aggregate(Sum('amount'))['amount__sum']
+        if money_raised_in_cents is None:
+            return 0
+
+        return math.floor(money_raised_in_cents / 100)
+
     def percent_goal(self):
         """
         Should return the percent of the goal achieved
@@ -65,10 +72,12 @@ class CharityProfile(models.Model):
         total_desired = self.total_goal()
         if not total_desired:
             return 0
-        if not self.money_raised:
+
+        money_raised = self.money_raised()
+        if not money_raised:
             return 0
 
-        percent_goal = math.floor(self.money_raised * 100 / total_desired)
+        percent_goal = math.floor(money_raised * 100 / total_desired)
         return percent_goal
 
     def all_tags(self):

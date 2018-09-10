@@ -25,6 +25,7 @@ from django.urls import path
 urlpatterns = [
     url(r'^login/$', core_views.login_route, name='login'),
     url(r'^logout/$', core_views.logout_route, name='logout'),
+    url(r'^team/$', core_views.team, name='team'),
     url(r'^signup/$', charity_views.signup, name='signup'),
     url(r'^charities/$', charity_views.charities),
     # ^ change core_views to charity_views bc we are changing the pattern
