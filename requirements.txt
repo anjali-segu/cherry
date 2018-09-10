@@ -2,3 +2,4 @@ Django==2.0.3
 psycopg2==2.7.5
 pytz==2018.3
 raven==6.9.0
+whitenoise==4.0
