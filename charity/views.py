@@ -5,13 +5,11 @@ from django.contrib.auth import login
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.generic import View
-from django.views.decorators.csrf import csrf_exempt
 from django.db.utils import IntegrityError
 
 from .models import CharityProfile, Campaign, CampaignItem, Tag
 
 
-@csrf_exempt
 def signup_submit(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
@@ -88,7 +86,6 @@ def charity(request, charity_name, charity_id):
     )
 
 
-@csrf_exempt
 def charity_update(request, charity_name, charity_id):
     charity_logged_in = (
         request.user.is_authenticated and
@@ -142,7 +139,6 @@ def charities(request):
         {'user': request.user, 'items': items, 'no_items': len(items) <= 0},
     )
 
-@csrf_exempt
 def create_campaign(request):
     form_data = request.POST.dict()
     print(form_data)
@@ -158,7 +154,6 @@ def create_campaign(request):
         'success': True,
     })
 
-@csrf_exempt
 def add_campaign_item(request, campaign_id):
     campaign = Campaign.objects.get(pk=campaign_id)
 
@@ -172,7 +167,6 @@ def add_campaign_item(request, campaign_id):
         'success': True,
     })
 
-@csrf_exempt
 def delete_campaign_item(request, campaign_item_id):
     campaign_item = CampaignItem.objects.get(pk=campaign_item_id)
     campaign_item.delete()

@@ -27,6 +27,7 @@
     <script src="{% static 'cherry.js' %}"></script>
 
     <title>{% block title %}{% endblock %}</title>
+    {% csrf_token %}
   </head>
   <body>
       {% block navbar %}

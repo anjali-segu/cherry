@@ -2,10 +2,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, render_to_response
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from charity.models import CharityProfile
 
-@csrf_exempt
 def login_route(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
@@ -23,7 +21,6 @@ def login_route(request):
         'success': False,
     })
 
-@csrf_exempt
 def logout_route(request):
     logout(request)
     return JsonResponse({'success':True})

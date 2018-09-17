@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mywebsite.wsgi.application'
-
+CSRF_USE_SESSIONS = True
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
