@@ -6,7 +6,7 @@
     <div class="col no-space">
       <div class="card no-space">
         <div class="card-image ">
-          <picture>
+        <picture>
           <source media="(max-width: 700px)" srcset="static/bw_tall_dog.jpg"/>
           <img class="heroimg" src="{% static 'bw_shorter_dog.jpg' %}"/>
         </picture>
@@ -49,12 +49,14 @@
 
 
  <div class="container">
- 	<h3 class="thin info_text ">How can you help?</h3>
-  <p class="info_sub_text">Thousands of charities go unknown. Discover a charity today and make a contribution.</p>
- 	<p class="info_sub_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
- 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
- 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
- 	consequat.</p>
+
+  <h3 class="thin info_text" style="text-align: left;"><strong>We believe every charity deserves</strong> the opportunity to make an impact</h3>
+  <!-- <h3 class="thin info_text" style="text-align:left; margin-top: 0px; margin-bottom: 25px;">the opportunity to explain their work</h3> -->
+  <p class="info_sub_text">The Internet alone cannot solve the problems of small organizations.
+    The reality is having a modern website is prohibitvely expensive for most organizations preventing
+    the needed exposure many organizations deserve. We are here to change that! By reinventing the way charities get discovered,
+    we can eliminate technology barriers for socially responsible organizations as well as the economically disadvantaged.
+    We can't do it without you! Donate today and help us fullfill our vision.</p>
  </div>
 {% if should_render_featured_charity %}
 <a href="{{featured_charity.profile_url}}">

@@ -2,14 +2,96 @@
 {% load staticfiles %}
 
 {% block content %}
-<h1 class="thin black-text findacharityhead">Meet the Team</h1>
-<img src="{% static 'profile.JPG' %}" alt="" class="circle responsive-img">
-<h3 class="thin black-text">Anjali Segu</h3>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+<div class="container">
+  <h1 class="black-text findacharityhead">Meet the Team</h1>
 
+
+  <div class="row">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card">
+
+          <div class="card-image">
+            <img src="{% static 'profile.JPG' %}">
+          </div>
+
+          <div class="card-content">
+            <span class="thin card-title activator grey-text text-darken-4">Anjali Segu<i class="material-icons right">more_vert</i></span>
+            <!-- <p class="thin team_member_name">Anjali Segu</p> -->
+            <p class="team_role grey-text">Lead Engineer</p>
+
+            <div class="row team_links">
+                <div class="col s1 m1">
+                <a href="mailto:someone@example.com" target="_top"><i class="material-icons">email</i></a>
+                </div>
+
+                <div class="col s10 m11">
+                  <p>test@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="col s1 m1 ">
+              <a target="_blank" href="https://github.com/anjali-segu/cherry"><i class="material-icons">open_in_new</i></a>
+              </div>
+
+              <div class="col s10 m11">
+                <p>@anjali-segu(Github)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Anjali Segu<i class="material-icons right">close</i></span>
+            <p class="team_description">Anjali Segu is currently a senior at Westwood High School. She is apart of the 4 year computer science track at her school. She has also completed 200+ hours of training on Harvard CS50, Udemy, and Codecademy.</p>
+          </div>
+
+          <!-- <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+            <p class="team_description thin">Anjali Segu is currently a senior at Westwood High School. She is apart of the 4 year computer science track at her school. She has also completed 200+ hours of training on Harvard CS50, Udemy, and Codecademy.</p>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+
+  <!-- <div class="col s12 m6 l3">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="{% static 'profile.JPG' %}">
+
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p class="thin team_member_name">Anjali Segu</p>
+          <p class="team_role grey-text">Lead Engineer</p>
+          <p class="team_description thin">Anjali Segu is currently a senior at Westwood High School. She is apart of the 4 year computer science track at her school. She has also completed 200+ hours of training on Harvard CS50, Udemy, and Codecademy.</p>
+
+          <div class="row team_links">
+            <div class="col s1">
+            <a href="mailto:someone@example.com" target="_top"><i class="material-icons">email</i></a>
+            </div>
+
+            <div class="col s11">
+              <p>test@gmail.com</p>
+            </div>
+          </div>
+
+        <div class="row">
+          <div class="col s1">
+          <a target="_blank" href="https://github.com/anjali-segu/cherry"><i class="material-icons">open_in_new</i></a>
+          </div>
+
+          <div class="col s11">
+            <p>@anjali-segu(Github)</p>
+          </div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div> -->
+
+
+
+</div>
 {% endblock %}

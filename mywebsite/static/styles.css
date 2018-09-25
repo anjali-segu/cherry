@@ -5,7 +5,7 @@
 	text-align: center !important;
 }
 .cherry_giver_logo_text {
-	font-size: 1.95rem !important; 
+	font-size: 1.95rem !important;
 }
 .classic_font {
 	font-weight: 100;
@@ -134,6 +134,7 @@ h3 {
 .findacharityhead{
 	text-align: center;
 	font-size: 3em;
+	font-weight: 300 !important;
 }
 .featurecharitydescription{
 	font-size: 1.2rem !important;
@@ -229,6 +230,19 @@ h3 {
 	border-radius: 10px;
 	padding: 5px;
 }
+.team_member_name {
+	font-size: 2em;
+}
+.team_role{
+	font-size: 1em;
+	margin-bottom: 1em !important;
+}
+.team_description{
+	font-size: 1.1em !important;
+}
+.team_links{
+	margin-bottom: 0 !important;
+}
 
 
 /* For mobile portrait */
@@ -309,6 +323,8 @@ h3 {
 .campaign-content {
 	min-height: 200px
 }
+
+
 }
 @media only screen and (min-width: 300px) and (max-width: 700px){
 	.donatenowbox {
@@ -325,6 +341,7 @@ h3 {
 		line-height: 37px;
 		margin-top: 10px;
 	}
+
 }
 /* For tablets */
 @media only screen and (min-device-width: 701px) and (max-device-width: 1200px)
@@ -404,6 +421,9 @@ h3 {
 		.donatenowbox{
 			width: 250px !important;
 			height: 50px !important;
+		}
+		.heroimg {
+			width: 100%;
 		}
 		.editbox{
 			width: 250px !important;
