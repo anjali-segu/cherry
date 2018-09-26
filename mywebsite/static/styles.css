@@ -243,7 +243,16 @@ h3 {
 .team_links{
 	margin-bottom: 0 !important;
 }
-
+.inspiration_head{
+	text-align: center !important;
+	font-size: 1.6em !important;
+	font-weight: 300;
+	margin-top: 10px;
+}
+.inspiration_description{
+	font-weight: 300;
+	font-size: 1.1em;
+}
 
 /* For mobile portrait */
 @media only screen
