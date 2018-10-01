@@ -15,7 +15,7 @@
         {% if user.is_authenticated %}
           <li><a href="#" class="btn cyan darken-1 buttons" id="logout_btn">Logout</a></li>
         {% else %}
-          <li><a href="{% url 'signup' %}" class="btn cyan darken-1 buttons">Signup<i class="material-icons left">person_add</i></a></li>
+          <li><a href="{% url 'signup' %}" class="btn cyan darken-1 buttons">Add a Charity<i class="material-icons left">person_add</i></a></li>
            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#login">Modal</a> -->
           <li><a href="#login" class="btn cyan darken-1 buttons modal-trigger">Login<i class="material-icons left">arrow_forward</i></a></li>
         {% endif %}
@@ -33,7 +33,7 @@
     {% if user.is_authenticated %}
       <li><a href="#" id="logout_btn_sidebar">Logout</a></li>
     {% else %}
-      <li><a href="{% url 'signup' %}">Signup<i class="material-icons right">person_add</i></a></li>
+      <li><a href="{% url 'signup' %}">Add a Charity<i class="material-icons right">person_add</i></a></li>
       <li><a href="#login" class="modal-trigger">Login<i class="material-icons right">arrow_forward</i></a></li>
     {% endif %}
     <li><a href="/team">Team<i class="material-icons right">people</i></a></li>
