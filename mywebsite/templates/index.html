@@ -59,25 +59,27 @@
     We can't do it without you! Donate today and help us fullfill our vision.</p>
  </div>
 {% if should_render_featured_charity %}
-<a href="{{featured_charity.profile_url}}">
+<!-- <a href="{{featured_charity.profile_url}}"> -->
 <div class="row">
   <div class="col xl8 offset-xl2 l8 offset-l2 m8 offset-m2 s12">
     <div class="container">
-       <div class="card">
+    <a href="{{featured_charity.profile_url}}">
+       <div class="card" style="margin-top: 3em;">
 
           <div class="card-image">
             <img class="activator" src="{{featured_charity.img_url}}">
-            <span class="card-title black-text" style="font-weight: 400;">FEATURED CHARITY</span>
+            <span class="card-title black-text" style="font-weight: 400; font-size: 1.8em;">FEATURED CHARITY</span>
           </div>
 
           <div class="card-content cyan darken-4">
-            <span class="card-title activator grey-text text-darken-4">{{featured_charity.name}}</span>
-            <p class="featurecharitydescription black-text">{{featured_charity.bio}}</p>
+            <span class="card-title activator" style="color: rgba(255,255,255,0.96) !important; ">{{featured_charity.name}}</span>
+            <p class="featurecharitydescription" style="color: rgba(255,255,255,0.84) !important;">{{featured_charity.bio}}</p>
           </div>
       </div>
+    </a>
     </div>
   </div>
 </div>
-</a>
+<!-- </a> -->
 {% endif %}
 {% endblock %}

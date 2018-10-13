@@ -138,6 +138,7 @@ h3 {
 }
 .featurecharitydescription{
 	font-size: 1.2rem !important;
+	color: rgba(255,255,255,0.84) !important;
 }
 .charityinfobox {
 	background-color: white;
@@ -252,8 +253,16 @@ h3 {
 .inspiration_description{
 	font-weight: 300;
 	font-size: 1.1em;
+	color: rgba(255,255,255,0.96) !important;
 }
-
+.quotes{
+	font-family: 'News Cycle', sans-serif;
+	font-size: 90px;
+	margin-bottom: 10px;
+	height: 57px;
+	margin-top: 0px;
+	color: white;
+}
 /* For mobile portrait */
 @media only screen
 	and (min-device-width: 300px)
@@ -424,6 +433,7 @@ h3 {
 	.info_sub_text{
 		font-size: 1.4em;
 	}
+
 	}
 	/* For smaller desktop screens */
 	@media only screen and (min-device-width: 1366px) {
@@ -438,4 +448,5 @@ h3 {
 			width: 250px !important;
 			height: 50px !important;
 		}
+	
 }
