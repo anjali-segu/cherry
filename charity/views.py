@@ -1,4 +1,5 @@
 import json
+from urllib.parse import urlparse
 
 from django.contrib.auth.models import User
 from django.contrib.auth import login
@@ -10,11 +11,21 @@ from django.db.utils import IntegrityError
 from .models import CharityProfile, Campaign, CampaignItem, Tag
 
 
+def _url_with_scheme(url):
+    parsed_result = urlparse(url)
+    if 'http' not in parsed_result.scheme:
+        return 'https://' + parsed_result.geturl()
+
+    return url
+
+
 def signup_submit(request):
     username = request.POST.get('username', None)
     password = request.POST.get('password', None)
     name = request.POST.get('name', None)
     charity_url = request.POST.get('charity_url', None)
+    if charity_url:
+        charity_url = _url_with_scheme(charity_url)
     email = request.POST.get('email', None)
     bio = request.POST.get('bio', None)
     campaign_name = request.POST.get('campaign_name', None)
@@ -100,7 +111,11 @@ def charity_update(request, charity_name, charity_id):
     params = json.loads(request.body)
     charity_profile = CharityProfile.objects.filter(pk=charity_id)
 
-    charity_profile.update(**params['fields'])
+    fields = params['fields']
+    if 'charity_url' in fields:
+        fields['charity_url'] = _url_with_scheme(fields['charity_url'] )
+
+    charity_profile.update(**fields)
     charity_profile = charity_profile[0]
     charity_tag_set = charity_profile.tags_set()
     # Update tags based on tags param

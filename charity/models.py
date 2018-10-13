@@ -21,7 +21,7 @@ class CharityProfile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, default=None, on_delete=models.CASCADE)
     # on_delete will also delete all linked data to that user
     name = models.CharField(max_length=200)
-    charity_url = models.URLField()
+    charity_url = models.URLField(null=True, blank=True, default=None)
     bio = models.TextField(null=True, blank=True, default=None)
     long_bio = models.TextField(null=True, blank=True, default=None)
     img_url = models.URLField(null=True, blank=True, default=None)

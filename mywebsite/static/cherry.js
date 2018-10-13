@@ -107,7 +107,7 @@ $( document ).ready(function(){
       ($('#new_password').val() && $('#new_password').val() !== '') &&
       ($('#email').val() && $('#email').val() !== '' && validateEmail($('#email').val())) &&
       ($('#new_charity_name').val() && $('#new_charity_name').val() !== '') &&
-      ($('#new_charity_url').val() && $('#new_charity_url').val() !== '') &&
+      // ($('#new_charity_url').val() && $('#new_charity_url').val() !== '') &&
       ($('#new_charity_bio').val() && $('#new_charity_bio').val() !== '') &&
       ($('#new_charity_campaign_name').val() && $('#new_charity_campaign_name').val() !== '')
     )
@@ -139,7 +139,7 @@ $( document ).ready(function(){
           'password':$('#new_password').val(),
           'email': $('#email').val(),
           'name':$('#new_charity_name').val(),
-          'charity_url':$('#new_charity_url').val(),
+          'charity_url':$('#new_charity_url').val() == '' ? null : $('#new_charity_url').val(),
           'bio': $('#new_charity_bio').val(),
           'campaign_name': $('#new_charity_campaign_name').val(),
         },
