@@ -10,9 +10,9 @@
 </div>
 
 <div class="row">
-    <div class="col l6 m6 s12 center-content">
+    <!-- <div class="col l6 m6 s12 center-content">
     <button data-target="donate" class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light modal-trigger">Donate Now</button>
-    </div>
+    </div> -->
 
     {% if charity_logged_in %}
     <div class="col l6 m6 s12 center-content">
@@ -22,14 +22,14 @@
 </div>
 
 <!-- Donate Modal -->
-  <div id="donate" class="modal">
+  <!-- <div id="donate" class="modal">
     <div class="modal-content">
       <h4>{{charity.name}} Donation</h4>
     </div>
     <div class="modal-footer">
       <a class="waves-effect waves-light btn" id="donate_btn">Donate</a>
     </div>
-</div>
+</div> -->
 
 
 <div class="row">
@@ -50,13 +50,13 @@
 
           <p class="charity_bio_box black-text">{{charity.bio_detail}}</p>
           <hr>
-          <div class="progress progressbar">
+          <!-- <div class="progress progressbar">
             <div class="determinate" style="width:{{charity.percent_goal}}%"></div>
-          </div>
+          </div> -->
 
           {% if charity.has_campaign_items %}
-            <p class="money_raised_text">${{charity.money_raised}}</p>
-            <p class="goal_text">raised out of ${{charity.total_goal}} goal</p>
+            <!-- <p class="money_raised_text">${{charity.money_raised}}</p> -->
+            <p class="money_raised_text">${{charity.total_goal}} goal</p>
           {% else %}
             <p class="thin" style="font-size: 1.2em;">No campaigns items created, add campaign items below</p>
           {% endif %}
