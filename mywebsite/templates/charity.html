@@ -110,9 +110,20 @@
 
            <div class="row">
              <div class="input-field col s12">
-               <i class="material-icons prefix">image</i>
+                 <!-- <i class="material-icons prefix">image</i> -->
+                 <i href="#image_info" class="material-icons prefix yellow-text text-darken-3 modal-trigger">lightbulb_outline</i>
                <input id="img_url" placeholder="{{charity.img_url}}" type="text">
                <label for="img_url">Image URL</label>
+             </div>
+           </div>
+
+           <!-- Image Info Modal -->
+           <div id="image_info" class="modal">
+             <div class="modal-content">
+               <p class="center-content">Need to talk about image hosting website and list steps here.</p>
+             </div>
+             <div class="modal-footer">
+               <a href="#!" class="modal-close  btn-flat">Close</a>
              </div>
            </div>
 
@@ -189,6 +200,7 @@
             <div class="row">
               <input type="hidden" value="{{charity.id}}" id="charity_id"></input>
               <div class="input-field col s12">
+                <i class="material-icons prefix yellow-text text-darken-3">lightbulb_outline</i>
                 <input placeholder="ex: My First Campaign" id="new_campaign_name" type="text" class="validate">
                 <label for="new_campaign_name">Campaign Name</label>
               </div>
@@ -201,7 +213,15 @@
       </div>
   </div>
 
-  <!-- Add Campaign Modal -->
+  <!-- <div class="row">
+    <div class="input-field col s12">
+      <i class="material-icons prefix">link</i>
+      <input id="url" placeholder="{{charity.charity_url}}" type="text">
+      <label for="url">Charity Webpage</label>
+    </div>
+  </div> -->
+
+  <!-- Add Campaign Item Modal -->
   <div id="addcampaignitem" class="modal">
 
       <div class="modal-content">
@@ -226,11 +246,13 @@
             <div class="row">
 
               <div class="input-field col s6">
+                <i class="material-icons prefix">create</i>
                 <input placeholder="Item Name" id="item_name" type="text" class="validate">
                 <label for="item_name">Item Name</label>
               </div>
 
               <div class="input-field col s6">
+                <i class="material-icons prefix">attach_money</i>
                 <input placeholder="Item Cost" id="item_cost" type="text" class="validate">
                 <label for="item_cost">Item Cost</label>
               </div>
@@ -240,6 +262,7 @@
 
             <div class="row">
               <div class="input-field col s12">
+                <i class="material-icons prefix">help_outline</i>
                 <input placeholder="Item Description" id="item_description" type="text" class="validate">
                 <label for="item_description">Item Description</label>
               </div>
@@ -247,6 +270,7 @@
 
             <div class="row">
               <div class="input-field col s12">
+                <i class="material-icons prefix yellow-text text-darken-3">lightbulb_outline</i>
                 <input placeholder="Item Image URL" id="item_img_url" type="text" class="validate">
                 <label for="item_img_url">Item Image URL</label>
               </div>
