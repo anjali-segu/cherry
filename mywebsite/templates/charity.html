@@ -5,6 +5,9 @@
 
 {% block content %}
 <div class="row">
+<p href="#needhelp"class="blue-text lighten-2 modal-trigger"style="float: right; text-decoration: underline; padding-right: 1em;">Need help?</p>
+</div>
+<div class="row">
   <!-- <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button> -->
   <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons small">open_in_new</i></a></h1>
 </div>
@@ -20,7 +23,46 @@
     </div>
     {% endif %}
 </div>
+<!--Need Help Modal-->
+<div id="needhelp" class="modal">
+    <div class="modal-content">
 
+      <h4 style="text-align: center; font-weight: 300;">Help is Here!</h4>
+      <p style="text-align: center; font-size: 1.2em; font-weight:300;">We strive on making sure clients can get the help they need to make the process of signing up and maintaining a page easier.</p>
+
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-3">
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Light bulbs to the rescue!</p>
+          <div class="row">
+            <div class="col s6 offset-s5">
+           <i class="large material-icons prefix yellow-text text-darken-3">lightbulb_outline</i>
+            </div>
+         </div>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Through out our pages there are yellow light bulbs that give you the best tips and help answer questions. When in doubt click away!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-3">
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Example Page</p>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Here is a screen shot of an example page of an animal shelter charity. We will explain each component of their page to give you a great example of how to fill your page to get the best results!</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn-flat">Close</a>
+    </div>
+
+</div>
 <!-- Donate Modal -->
   <!-- <div id="donate" class="modal">
     <div class="modal-content">
@@ -120,7 +162,7 @@
            <!-- Image Info Modal -->
            <div id="image_info" class="modal">
              <div class="modal-content">
-               <p class="center-content">Need to talk about image hosting website and list steps here.</p>
+               <p class="center-content">Need to talk about image hosting website and list steps here</p>
              </div>
              <div class="modal-footer">
                <a href="#!" class="modal-close  btn-flat">Close</a>
@@ -270,9 +312,19 @@
 
             <div class="row">
               <div class="input-field col s12">
-                <i class="material-icons prefix yellow-text text-darken-3">lightbulb_outline</i>
+                <i href="#image_info2" class="material-icons prefix yellow-text text-darken-3 modal-trigger">lightbulb_outline</i>
                 <input placeholder="Item Image URL" id="item_img_url" type="text" class="validate">
                 <label for="item_img_url">Item Image URL</label>
+              </div>
+            </div>
+
+            <!-- Image Info Modal -->
+            <div id="image_info2" class="modal">
+              <div class="modal-content">
+                <p class="center-content">Need to talk about image hosting website and list steps here</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close  btn-flat">Close</a>
               </div>
             </div>
 
