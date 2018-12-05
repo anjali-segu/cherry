@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="row">
-<p href="#needhelp"class="blue-text lighten-2 modal-trigger"style="float: right; text-decoration: underline; padding-right: 1em;">Need help?</p>
+<p href="#needhelp"class="blue-text lighten-2 modal-trigger"style="float: right; text-decoration: underline; padding-right: 1em; font-size: 1.1em;">Need help?</p>
 </div>
 <div class="row">
   <!-- <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button> -->
@@ -48,12 +48,54 @@
     <div class="row">
       <div class="col s12">
         <div class="card-panel grey lighten-3">
-          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Example Page</p>
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">How to Utilize Elements on Your Page to the Fullest</p>
          <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Here is a screen shot of an example page of an animal shelter charity. We will explain each component of their page to give you a great example of how to fill your page to get the best results!</p>
+         <picture>
+           <source media="(max-width: 700px)" srcset="{% static 'example_charity_tall.png' %}"/>
+           <img class="heroimg" src="{% static 'example_charity.png' %}"/>
+         </picture>
         </div>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-3">
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Edit</p>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Click on the edit button to edit any portions of your page.</p>
+         <img class="heroimg"src="{% static 'edit_button.png' %}"/>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Most everything is self explanatory! The only thing we want to highlight is the bio and long bio. The <b>bio</b> field is where you can write a <b>short</b> statement about your charity which will be listed on the Find a Charity page. The <b>long bio</b> will be listed on your profile where you can go more into <b>depth</b> about your charity.</p>
+         <img class="heroimg"src="{% static 'bio.png' %}"/>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-3">
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Tags, Tags, Tags</p>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">Tags are essentially how donors can search for your charity. Check off the tags that apply to you in the edit form.</p>
+         <img class="heroimg"src="{% static 'tags.png' %}"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel grey lighten-3">
+          <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Campaigns</p>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">To create a campaign click on the create campaign button. Campaigns allow you to explain what your currently working on. For example, for the animal shelter they are having a Puppy Fall Fundraiser.</p>
+         <p style="font-weight: 300; font-size: 1.1em; text-align: center;">To create campaign items click on the add campaign item button. Campaign items let you explain what components are in your campaign and how funding is allocated. For example, the animal shelter is utilizing their campaign to raise money for dog toys, beds, and food.</p>
+
+         <picture>
+           <source media="(max-width: 700px)" srcset="{% static 'example_campaign_tall.png' %}"/>
+           <img class="heroimg"src="{% static 'example_campaign.png' %}"/>
+         </picture>
+
+        </div>
+      </div>
+    </div>
 
 
     </div>
@@ -162,7 +204,10 @@
            <!-- Image Info Modal -->
            <div id="image_info" class="modal">
              <div class="modal-content">
-               <p class="center-content">Need to talk about image hosting website and list steps here</p>
+               <p class="center-content" style="font-size: 1.4em; font-weight:300; margin-top: 0px;">Want to use an Image from you Computer?</p>
+               <p><a href ="https://postimages.org/" target="_blank">1. Go to PostImage.</a></p>
+               <p>2. Choose an image and follow the instructions on the page.</p>
+               <p>3. Copy and paste the <b>direct link</b> into the Image URL field on CherryGiver.</p>
              </div>
              <div class="modal-footer">
                <a href="#!" class="modal-close  btn-flat">Close</a>
@@ -236,24 +281,40 @@
     <div id="createcampaign" class="modal">
       <div class="modal-content">
         <h4>Create Campaign</h4>
-        <p>Campaign title explains the current project your working on (Ex: Chicago Food Bank Fundraiser)</p>
+        <p>Campaign title explains the current project your working on (Ex: Puppy Fall Fundraiser)</p>
         <div class="row">
           <form class="col s12">
             <div class="row">
               <input type="hidden" value="{{charity.id}}" id="charity_id"></input>
               <div class="input-field col s12">
-                <i class="material-icons prefix yellow-text text-darken-3">lightbulb_outline</i>
+              <i href="#campaign_info"class="material-icons prefix yellow-text text-darken-3 modal-trigger">lightbulb_outline</i>
                 <input placeholder="ex: My First Campaign" id="new_campaign_name" type="text" class="validate">
                 <label for="new_campaign_name">Campaign Name</label>
               </div>
             </div>
           </form>
+
+          <!-- Campaign Info Modal -->
+          <div id="campaign_info" class="modal">
+            <div class="modal-content">
+              <p style="font-weight: 300; font-size: 1.7em; text-align: center;">Campaigns</p>
+              <p style="font-weight: 300; font-size: 1.1em; text-align: center;">To create a campaign click on the create campaign button. Campaigns allow you to explain what your currently working on. For example, for an animal shelter might have a Puppy Fall Fundraiser.</p>
+              <p style="font-weight: 300; font-size: 1.1em; text-align: center;">To create campaign items click on the add campaign item button. Campaign items let you explain what components are in your campaign and how funding is allocated. For example, an animal shelter might utilize their campaign to raise money for dog toys, beds, and food.</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close  btn-flat">Close</a>
+            </div>
+          </div>
+
+
         </div>
       </div>
       <div class="modal-footer">
         <a class="waves-effect waves-light btn" id="create_campaign_btn">Create</a>
       </div>
   </div>
+
+
 
   <!-- <div class="row">
     <div class="input-field col s12">
@@ -268,7 +329,7 @@
 
       <div class="modal-content">
         <h4>Add Campaign Item</h4>
-        <p>Campaign items break down the different components of your campaign. (Ex: Reusable Boxes, Water Bottles)</p>
+        <p>Campaign items break down the different components of your campaign. (Ex: Dog Toys, Dog Beds, Dog Food)</p>
         <div class="row">
           <form class="col s12">
 
@@ -321,7 +382,10 @@
             <!-- Image Info Modal -->
             <div id="image_info2" class="modal">
               <div class="modal-content">
-                <p class="center-content">Need to talk about image hosting website and list steps here</p>
+                <p class="center-content" style="font-size: 1.4em; font-weight:300; margin-top: 0px;">Want to use an Image from you Computer?</p>
+                <p><a href ="https://postimages.org/" target="_blank">1. Go to PostImage.</a></p>
+                <p>2. Choose an image and follow the instructions on the page.</p>
+                <p>3. Copy and paste the <b>direct link</b> into the Image URL field on CherryGiver.</p>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close  btn-flat">Close</a>
