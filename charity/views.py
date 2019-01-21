@@ -189,3 +189,11 @@ def delete_campaign_item(request, campaign_item_id):
     return JsonResponse({
         'success': True,
     })
+# This is new! 
+def delete_campaign(request, campaign_id):
+    campaign = Campaign.object.get(pk=campaign_id)
+    campaign.delete()
+
+    return JsonResponse({
+        'success': True,
+    })

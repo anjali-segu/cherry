@@ -23,6 +23,7 @@
     </div>
     {% endif %}
 </div>
+
 <!--Need Help Modal-->
 <div id="needhelp" class="modal">
     <div class="modal-content">
@@ -245,14 +246,26 @@
 
   <div class="row">
     <!-- Dropdown Structure -->
-    <ul id="dropdown1" class="dropdown-content">
-      {% for campaign_in_list in charity.campaigns %}
-        <li>
-            <a href="{{charity.profile_url}}?campaign_id={{campaign_in_list.id}}">{{campaign_in_list.name}}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="col s6 m6">
+      <ul id="dropdown1" class="dropdown-content">
+        {% for campaign_in_list in charity.campaigns %}
+          <li>
+              <a href="{{charity.profile_url}}?campaign_id={{campaign_in_list.id}}" >{{campaign_in_list.name}}</a>
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+<!-- How I want to delete campaign (new)-->
+    <div class="col s6 m6">
+      {% if charity_logged_in %}
+      <a href="#" data-campaign-id="{{campaign_in_list.id}}" class="delete-campaign">
+        <i class="material-icons">delete</i>
+      </a>
+      {% endif %}
+    </div>
+
+</div>
 
 
   <div class="row">

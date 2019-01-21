@@ -35,6 +35,7 @@ urlpatterns = [
     path('campaign/create/', charity_views.create_campaign),
     path('campaign/<campaign_id>/add/', charity_views.add_campaign_item),
     path('campaign-item/<campaign_item_id>/delete/', charity_views.delete_campaign_item),
+    path('campaign/<campaign_id>/delete/',charity_views.delete_campaign),
     url(r'^admin/', admin.site.urls),
     url(r'^$', core_views.index),
 ]

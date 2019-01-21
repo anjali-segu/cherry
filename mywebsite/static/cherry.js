@@ -80,6 +80,13 @@ $( document ).ready(function(){
     })
   })
 
+  // how to get popup the first time login--NEWCODE
+  //    if ($.cookie('pop') == null) {
+  //        $('#needhelp').modal('show');
+  //        $.cookie('pop', '1');
+  //    }
+
+
   // this is how the logout button works
   $('#logout_btn, #logout_btn_sidebar').click(function(){
     const csrftoken = $("[name=csrfmiddlewaretoken]").val();
@@ -260,4 +267,15 @@ $( document ).ready(function(){
       }
     )
   })
+  //This is how we delete campaigns (NEW)
+  $('.delete-campaign').click(function(event){
+    $.get(
+      `/campaign/${event.currentTarget.dataset.campaignId}/delete/`,
+      function(response){
+        console.log(response)
+        location.reload()
+      }
+    )
+  })
+
 })
