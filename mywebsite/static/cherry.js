@@ -156,7 +156,7 @@ $( document ).ready(function(){
         dataType: 'json',
         success: function(response) {
           if (response.success) {
-              window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
+              window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/?first_time=true`
           } else {
               $('#signUpFormErrorContent').text(response.message)
               $('#signUpFormError').removeClass('hidden')
@@ -278,4 +278,10 @@ $( document ).ready(function(){
     )
   })
 
+  // only open the need help on first time login
+  const urlParams = new URLSearchParams(window.location.search);
+  const first_time = urlParams.get('first_time');
+  if (first_time && first_time !== '') {
+    $('#needhelp').modal('open')
+  }
 })

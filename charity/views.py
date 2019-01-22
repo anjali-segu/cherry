@@ -70,7 +70,6 @@ def charity(request, charity_name, charity_id):
     charity = CharityProfile.objects.get(pk=charity_id)
 
     campaign_id = request.GET.get('campaign_id')
-    print(campaign_id)
     if campaign_id is None:
         campaign = charity.campaign_set.all()[0]
     else:
@@ -189,9 +188,9 @@ def delete_campaign_item(request, campaign_item_id):
     return JsonResponse({
         'success': True,
     })
-# This is new! 
+# This is new!
 def delete_campaign(request, campaign_id):
-    campaign = Campaign.object.get(pk=campaign_id)
+    campaign = Campaign.objects.get(pk=campaign_id)
     campaign.delete()
 
     return JsonResponse({

@@ -5,8 +5,9 @@
 
 {% block content %}
 <div class="row">
-<p href="#needhelp"class="blue-text lighten-2 modal-trigger"style="float: right; text-decoration: underline; padding-right: 1em; font-size: 1.1em;">Need help?</p>
+  <p href="#needhelp"class="blue-text lighten-2 modal-trigger"style="float: right; text-decoration: underline; padding-right: 1em; font-size: 1.1em;">Need help?</p>
 </div>
+
 <div class="row">
   <!-- <button class="btn-small grey darken-3 thin donatenowbox waves-effect waves-light">Donate Now</button> -->
   <h1 class="black-text charity_name_box">{{ charity.name }}<a href="{{charity.charity_url}}" target="_blank"><i class="material-icons small">open_in_new</i></a></h1>
@@ -257,25 +258,35 @@
       </ul>
     </div>
 <!-- How I want to delete campaign (new)-->
-    <div class="col s6 m6">
+    <!-- <div class="col s6 m6">
       {% if charity_logged_in %}
       <a href="#" data-campaign-id="{{campaign_in_list.id}}" class="delete-campaign">
         <i class="material-icons">delete</i>
       </a>
       {% endif %}
-    </div>
+    </div> -->
 
 </div>
 
 
   <div class="row">
-    <h2 class="thin needed_title">
-      {{campaign.formatted_name}} Budget
-      <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
-      <!-- {% if charity_logged_in %}
-        <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
-      {% endif %} -->
-    </h2>
+    <div class="col s6 m6">
+      <h2 class="thin needed_title">
+        {{campaign.formatted_name}} Budget
+        <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
+        <!-- {% if charity_logged_in %}
+          <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
+        {% endif %} -->
+      </h2>
+    </div>
+
+    <div class="col s6 m6">
+      {% if charity_logged_in %}
+      <a href="#" data-campaign-id="{{campaign.id}}" class="delete-campaign">
+        <i class="material-icons">delete</i>
+      </a>
+      {% endif %}
+    </div>
     <!-- Dropdown Trigger -->
   </div>
 
@@ -329,13 +340,6 @@
 
 
 
-  <!-- <div class="row">
-    <div class="input-field col s12">
-      <i class="material-icons prefix">link</i>
-      <input id="url" placeholder="{{charity.charity_url}}" type="text">
-      <label for="url">Charity Webpage</label>
-    </div>
-  </div> -->
 
   <!-- Add Campaign Item Modal -->
   <div id="addcampaignitem" class="modal">
@@ -439,5 +443,9 @@
      </div>
     {% endfor %}
   </div>
+
+
+
+
 
 {% endblock %}
