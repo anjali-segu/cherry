@@ -143,7 +143,7 @@
           {% if charity.has_campaign_items %}
             <!-- <p class="money_raised_text">${{charity.money_raised}}</p> -->
             <p class="money_raised_text">${{charity.total_goal}} goal</p>
-          {% else %}
+          {% elif charity_logged_in %}
             <p class="thin" style="font-size: 1.2em;">No campaigns items created, add campaign items below</p>
           {% endif %}
       </div>
@@ -257,14 +257,7 @@
         {% endfor %}
       </ul>
     </div>
-<!-- How I want to delete campaign (new)-->
-    <!-- <div class="col s6 m6">
-      {% if charity_logged_in %}
-      <a href="#" data-campaign-id="{{campaign_in_list.id}}" class="delete-campaign">
-        <i class="material-icons">delete</i>
-      </a>
-      {% endif %}
-    </div> -->
+
 
 </div>
 
@@ -274,14 +267,11 @@
       <h2 class="thin needed_title">
         {{campaign.formatted_name}} Budget
         <a class="dropdown-trigger" href="#" data-target="dropdown1"> <i class="material-icons">arrow_drop_down</i></a>
-        <!-- {% if charity_logged_in %}
-          <a href="#addcampaign" class="btn-floating btn-large cyan lighten-1 addcampaign_btn modal-trigger"><i class="material-icons">create</i></a>
-        {% endif %} -->
       </h2>
     </div>
 
     <div class="col s6 m6">
-      {% if charity_logged_in %}
+      {% if charity_logged_in and charity.has_campaign %}
       <a href="#" data-campaign-id="{{campaign.id}}" class="delete-campaign">
         <i class="material-icons">delete</i>
       </a>
@@ -427,7 +417,6 @@
        <div class="card">
          <div class="card-image">
            <img class="campaign-img" src="{{i.item_img_url}}">
-           <!-- <span class="card-title">{{i.item_name}}</span> -->
          </div>
          <div class="card-content campaign-content">
             <span class="card-title">{{i.item_name}}</span>

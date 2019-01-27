@@ -51,6 +51,9 @@ class CharityProfile(models.Model):
         total_goal = all_campaign_items.aggregate(Sum('item_cost'))['item_cost__sum']
         return math.floor(total_goal) if total_goal else 0
 
+    def has_campaign(self):
+        return len(self.campaign_set.all()) > 0
+
     def has_campaign_items(self):
         return len(self.all_campaign_items()) > 0
 

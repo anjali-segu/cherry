@@ -70,7 +70,9 @@ def charity(request, charity_name, charity_id):
     charity = CharityProfile.objects.get(pk=charity_id)
 
     campaign_id = request.GET.get('campaign_id')
-    if campaign_id is None:
+    if not charity.has_campaign():
+        campaign = None
+    elif campaign_id is None:
         campaign = charity.campaign_set.all()[0]
     else:
         campaign = Campaign.objects.get(pk=campaign_id)
