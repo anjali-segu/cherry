@@ -161,6 +161,11 @@ STATICFILES_DIRS = (
 
 LOGIN_REDIRECT_URL = 'home'
 
+# Sendgrid Key
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+FROM_EMAIL = os.getenv('FROM_EMAIL', 'cherrygiver.org@gmail.com')
+WEBSERVER_URL = os.getenv('WEBSERVER_URL', 'http://127.0.0.1:8000/')
+
 # Only run these when in production
 if int(os.getenv('PROD', 0)):
     RAVEN_CONFIG = {

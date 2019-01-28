@@ -94,6 +94,7 @@ def charity(request, charity_name, charity_id):
             'all_tags': all_tags,
             'charity_logged_in': charity_logged_in,
             'campaign': campaign,
+            'is_password_reset': request.GET.get('reset_password'),
         },
     )
 
@@ -111,13 +112,36 @@ def charity_update(request, charity_name, charity_id):
 
     params = json.loads(request.body)
     charity_profile = CharityProfile.objects.filter(pk=charity_id)
+    redirect_url = charity_profile[0].profile_url()
 
     fields = params['fields']
     if 'charity_url' in fields:
         fields['charity_url'] = _url_with_scheme(fields['charity_url'] )
 
+    user_fields = params['user_fields']
+    if 'email' in user_fields:
+        request.user.email = user_fields['email']
+        request.user.save()
+
+    if (
+        'password' in user_fields and
+        'password_repeat' in user_fields and
+        user_fields['password'] == user_fields['password_repeat'] and
+        len(user_fields['password']) >= 8 and
+        len(user_fields['password_repeat']) >= 8
+    ):
+        request.user.set_password(user_fields['password'])
+        request.user.save()
+        charity_profile.update(is_password_reset=False)
+        login(request, request.user)
+
     charity_profile.update(**fields)
     charity_profile = charity_profile[0]
+    # In case the user updates the account without changing the password
+    # when it has been reset via email
+    if charity_profile.is_password_reset:
+        redirect_url = f'{redirect_url}?reset_password=true'
+
     charity_tag_set = charity_profile.tags_set()
     # Update tags based on tags param
     for tag_name, should_tag in params['tags'].items():
@@ -131,6 +155,7 @@ def charity_update(request, charity_name, charity_id):
 
     return JsonResponse({
         'success': True,
+        'redirect_url': redirect_url
     })
 
 def charities(request):

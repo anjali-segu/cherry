@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, render_to_response
 from django.http import JsonResponse
 from charity.models import CharityProfile
+from mywebsite.emails import send_password_reset_email
 
 def login_route(request):
     username = request.POST.get('username', None)
@@ -16,6 +17,7 @@ def login_route(request):
             'charity_profile_name': charity_profile.name,
             'charity_profile_id': charity_profile.id,
             'is_admin': user.is_staff,
+            'is_password_reset': charity_profile.is_password_reset,
         })
     return JsonResponse({
         'success': False,
@@ -48,5 +50,18 @@ def team(request):
     )
 
 def forget_password(request):
-    print(request.POST.get('email', None))
+    email = request.POST.get('email', None)
+    if email is None:
+        return JsonResponse({'success': False, 'message': '"email" parameter not found in request'})
+
+    # Find the user with the given email
+    try:
+        user = User.objects.get(email=email)
+
+    except User.DoesNotExist:
+        return JsonResponse({'success': False, 'message': f'email "{email}" does not match any account'})
+
+    # Send an email with new credentials
+    send_password_reset_email(user)
+
     return JsonResponse({'success': True})

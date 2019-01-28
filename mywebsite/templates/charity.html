@@ -157,10 +157,46 @@
        <h4>Edit Page</h4>
        <p>*leave field unchanged if no edit*</p>
 
+       {% if is_password_reset %}
+        <p>Please update your password.</p>
+       {% endif %}
+
+       <div id="email-error" class="row hidden error_format">
+           <p>Please enter a valid email address.</p>
+       </div>
+
+       <div id="password-error" class="row hidden error_format">
+           <p>Password fields must be matching and at least 8 characters long.</p>
+       </div>
+
        <div class="row">
          <form class="col s12">
            <input type="hidden" value="{{charity.id}}" id="charity_id"></input>
            <input type="hidden" value="{{charity.name}}" id="charity_current_name"></input>
+
+           <div class="row">
+             <div class="input-field col s12">
+               <i class="material-icons prefix">mail</i>
+               <input id="account_email" placeholder="{{user.email}}" type="text">
+               <label for="account_email">Account Email</label>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="input-field col s12">
+               <i class="material-icons prefix">lock</i>
+               <input id="account_password" placeholder="" type="password">
+               <label for="account_password">Account Password</label>
+             </div>
+           </div>
+
+           <div class="row">
+             <div class="input-field col s12">
+               <i class="material-icons prefix">lock</i>
+               <input id="account_password_repeat" placeholder="" type="password">
+               <label for="account_password_repeat">Account Password (again)</label>
+             </div>
+           </div>
 
            <div class="row">
              <div class="input-field col s12">

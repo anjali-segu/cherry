@@ -29,6 +29,7 @@ class CharityProfile(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     is_displayed = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
+    is_password_reset = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag)
 
     def formatted_image(self):

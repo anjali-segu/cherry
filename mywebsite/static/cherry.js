@@ -73,8 +73,11 @@ $( document ).ready(function(){
       },
       dataType: 'json',
       success: function (response) {
+        console.log(response)
         if (response.is_admin && response.success) {
             window.location.href = '/charities'
+        } else if (response.success && response.is_password_reset) {
+            window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/?reset_password=true`
         } else if (response.success) {
             window.location.href = `/charity/${response.charity_profile_name}/${response.charity_profile_id}/`
         } else {
@@ -233,7 +236,85 @@ $( document ).ready(function(){
       })
   })
 
+  // This is how update btn form works
+  const isEmailFieldValid = function () {
+    const email = $('#account_email').val()
+    return (
+      email === null ||
+      email === '' ||
+      validateEmail(email)
+    )
+  }
+
+  const isPasswordFieldValid = function () {
+    const password = $('#account_password').val()
+    const passwordRepeat = $('#account_password_repeat').val()
+    return (
+      // Password fields are null
+      (password === null && passwordRepeat === null) ||
+      (password === '' && passwordRepeat === '') ||
+      // Password fields are not null, equal, and > 8 characters
+      (
+        password !== null &&
+        passwordRepeat !== null &&
+        password === passwordRepeat &&
+        password.length >= 8 &&
+        passwordRepeat.length >= 8
+      )
+    )
+  }
+  const toggleUpdateSubmit = function () {
+    console.log('email fields', isEmailFieldValid())
+    console.log('password fields', isPasswordFieldValid())
+    if (
+      isPasswordFieldValid() && isEmailFieldValid()
+    ) {
+        $('#update_btn').removeClass('disabled')
+    } else if (
+      !isPasswordFieldValid() || !isEmailFieldValid()
+    ) {
+        $('#update_btn').addClass('disabled')
+    }
+  }
+  const toggleAccountErrorMessage = function () {
+    if (isEmailFieldValid() && !$('#email-error').hasClass('hidden')) {
+      $('#email-error').addClass('hidden')
+    } else if (!isEmailFieldValid() && $('#email-error').hasClass('hidden')) {
+      $('#email-error').removeClass('hidden')
+    }
+  }
+  const togglePasswordErrorMessage = function () {
+    if (isPasswordFieldValid() && !$('#password-error').hasClass('hidden')) {
+      $('#password-error').addClass('hidden')
+    } else if (!isPasswordFieldValid() && $('#password-error').hasClass('hidden')) {
+      $('#password-error').removeClass('hidden')
+    }
+  }
+
+  $('#account_email').keyup(toggleUpdateSubmit)
+  $('#account_email').keyup(toggleAccountErrorMessage)
+  $('#account_password').keyup(toggleUpdateSubmit)
+  $('#account_password').keyup(togglePasswordErrorMessage)
+  $('#account_password_repeat').keyup(toggleUpdateSubmit)
+  $('#account_password_repeat').keyup(togglePasswordErrorMessage)
+
   $('#update_btn').click(function(){
+    const userUpdatedFields = {}
+    const newAccountEmail = $('#account_email').val()
+    if (newAccountEmail && newAccountEmail !== '') {
+      userUpdatedFields.email = newAccountEmail
+    }
+
+    const newAccountPassword = $('#account_password').val()
+    if (newAccountPassword && newAccountPassword !== '') {
+      userUpdatedFields.password = newAccountPassword
+    }
+
+    const newAccountPasswordRepeat = $('#account_password_repeat').val()
+    if (newAccountPasswordRepeat && newAccountPasswordRepeat !== '') {
+      userUpdatedFields.password_repeat = newAccountPasswordRepeat
+    }
+
     const updatedFields = {}
     const newName = $('#name').val()
     if (newName && newName !== '') {
@@ -263,6 +344,7 @@ $( document ).ready(function(){
     }
     const formData = {
       fields: updatedFields,
+      user_fields: userUpdatedFields,
       tags: updateTags
     }
     const csrftoken = $("[name=csrfmiddlewaretoken]").val();
@@ -275,7 +357,7 @@ $( document ).ready(function(){
       },
       dataType: 'json',
       success: function(response){
-        location.reload()
+        window.location.href = response.redirect_url
       }
     })
   })
@@ -350,5 +432,10 @@ $( document ).ready(function(){
   const first_time = urlParams.get('first_time');
   if (first_time && first_time !== '') {
     $('#needhelp').modal('open')
+  }
+  // Open the edit modal upon password resets
+  const reset_password = urlParams.get('reset_password');
+  if (reset_password && reset_password !== '') {
+    $('#edit').modal('open')
   }
 })
