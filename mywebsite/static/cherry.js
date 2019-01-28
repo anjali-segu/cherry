@@ -1,3 +1,8 @@
+const validateEmail = function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 $( document ).ready(function(){
   $('.sidenav').sidenav();
   $('.parallax').parallax();
@@ -52,6 +57,8 @@ $( document ).ready(function(){
     $('#login-spinner').removeClass('hidden')
     // Second hide the form component by adding hidden class
     $('#login-form-row').addClass('hidden')
+    $('#login-error').addClass('hidden')
+    $('#forget-password-success').addClass('hidden')
     // Third make request
     const csrftoken = $("[name=csrfmiddlewaretoken]").val();
     $.ajax({
@@ -80,12 +87,76 @@ $( document ).ready(function(){
     })
   })
 
-  // how to get popup the first time login--NEWCODE
-  //    if ($.cookie('pop') == null) {
-  //        $('#needhelp').modal('show');
-  //        $.cookie('pop', '1');
-  //    }
+  // This is how the forget password form renders from login modal
+  $('#forgot_password_btn').click(function() {
+    // Hide everything in login modal
+    $('#login-form-modal').addClass('hidden')
+    // Reveal forget password content
+    $('#forget-password-modal').removeClass('hidden')
+  })
 
+  $('#back_to_login_btn').click(function() {
+    // Forget everything in login modal
+    $('#login-form-modal').removeClass('hidden')
+    // Hide forget password content
+    $('#forget-password-modal').addClass('hidden')
+  })
+
+  // Rest password form validation
+  const isResetPasswordFormValid = function () {
+      return (
+        $('#forget_password_email').val() &&
+        $('#forget_password_email').val() !== '' &&
+        validateEmail($('#forget_password_email').val())
+      )
+  }
+  const toggleResetPasswordSubmit = function () {
+    if (isResetPasswordFormValid() && $('#forget_password_submit_btn').hasClass('disabled')) {
+      $('#forget_password_submit_btn').removeClass('disabled')
+    } else if (!isResetPasswordFormValid() && !$('#forget_password_submit_btn').hasClass('disabled')) {
+      $('#forget_password_submit_btn').addClass('disabled')
+    }
+  }
+  $('#forget_password_email').keyup(toggleResetPasswordSubmit)
+
+  // this is how the reset password form submission works
+  $('#forget_password_submit_btn').click(function() {
+    // First reveal the spinner component by removing hidden class
+    $('#forget-password-spinner').removeClass('hidden')
+    // Second hide the form component by adding hidden class
+    $('#forget-password-form-row').addClass('hidden')
+    $('#forget-password-error').addClass('hidden')
+    // Third make request
+    const csrftoken = $("[name=csrfmiddlewaretoken]").val();
+    $.ajax({
+      url: '/forget_password/',
+      type: 'post',
+      data: {
+        'email': $('#forget_password_email').val(),
+      },
+      headers: {
+          "X-CSRFToken": csrftoken,
+      },
+      dataType: 'json',
+      success: function (response) {
+        if (response.success) {
+          $('#forget-password-success').removeClass('hidden')
+          // Clean and reset form
+          $('#forget-password-spinner').addClass('hidden')
+          $('#forget-password-form-row').removeClass('hidden')
+          $('#forget_password_email').val('')
+          // Go back to login modal
+          $('#login-form-modal').removeClass('hidden')
+          $('#forget-password-modal').addClass('hidden')
+        } else {
+          // Reveal an error message
+          $('#forget-password-error').removeClass('hidden')
+          $('#forget-password-spinner').addClass('hidden')
+          $('#forget-password-form-row').removeClass('hidden')
+        }
+      }
+    })
+  })
 
   // this is how the logout button works
   $('#logout_btn, #logout_btn_sidebar').click(function(){
@@ -103,10 +174,6 @@ $( document ).ready(function(){
       }
     })
   })
-  const validateEmail = function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
   // Sign form validation
   const isSignupFormValid = function () {
     return (

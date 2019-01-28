@@ -46,3 +46,7 @@ def team(request):
         request,
         'team.html',
     )
+
+def forget_password(request):
+    print(request.POST.get('email', None))
+    return JsonResponse({'success': True})

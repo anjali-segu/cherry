@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^logout/$', core_views.logout_route, name='logout'),
     url(r'^team/$', core_views.team, name='team'),
     url(r'^signup/$', charity_views.signup, name='signup'),
+    url(r'^forget_password/$', core_views.forget_password, name='forget_password'),
     url(r'^charities/$', charity_views.charities),
     # ^ change core_views to charity_views bc we are changing the pattern
     path('charity/<charity_name>/<charity_id>/', charity_views.charity),

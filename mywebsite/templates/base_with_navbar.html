@@ -41,12 +41,19 @@
 
 <!-- Login Modal -->
   <div id="login" class="modal">
-    <div class="modal-content">
+
+    <!-- This is the content for the defualt login modal  -->
+    <div class="modal-content" id="login-form-modal">
       <h4 class="center-content thin" style="font-size: 3em;">Login</h4>
       <p class="center-content">Login if you are an existing charity. If you are a user click on "Find a Charity"</p>
 
       <div id="login-error" class="row hidden error_format">
           <p>Login Failed. Please check your username and password.</p>
+      </div>
+
+      <!--  Will be revealed on a successful reset -->
+      <div id="forget-password-success" class="row hidden success_format">
+          <p>An email has been sent. Please check your inbox for new login credentials.</p>
       </div>
 
       <div id="login-spinner" class="row hidden">
@@ -81,15 +88,62 @@
           </div>
 
           <div class="row">
-          <a class="waves-effect waves-light btn" id="login_btn" style="float: right;">Login</a>
-        </div>
+            <a class="waves-effect waves-light btn" id="login_btn" style="float: right;">Login</a>
+          </div>
 
-
-          <p style="float: right; margin-bottom: 0;">Don't have an account?<a href="/signup/"> Signup</a></p>
+          <div class="row">
+            <p style="float: right; margin-bottom: 0;">Don't have an account?<a href="/signup/"> Signup</a></p>
+          </div>
+          <div class="row">
+            <p style="float: right; margin-bottom: 0;"><a href="#" id="forgot_password_btn">Forgot password?</a></p>
+          </div>
 
         </form>
       </div>
 
+    </div>
+
+    <!-- This is the content for the "forget password" form -->
+    <div class="modal-content hidden" id="forget-password-modal">
+      <h4 class="center-content thin" style="font-size: 3em;">Reset Password</h4>
+      <p id="forget-password-subtitle" class="center-content">Enter your email address to reset your password. You will receive temporary credentials in your email shortly.</p>
+      <div id="forget-password-spinner" class="row hidden">
+        <div class="preloader-wrapper big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <span>Please wait</span>
+      </div>
+
+      <div id="forget-password-error" class="row hidden error_format">
+          <p>No account was found with that email. Please try again.</p>
+      </div>
+
+      <div class="row" id="forget-password-form-row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="email@example.com" id="forget_password_email" type="text" class="validate">
+              <label for="forget_password_email">Email Address</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <a class="waves-effect waves-light btn" id="forget_password_submit_btn" style="float: right;">Reset</a>
+          </div>
+
+          <div class="row">
+            <p style="float: right; margin-bottom: 0;"><a href="#" id="back_to_login_btn">Back to login</a></p>
+          </div>
+        </form>
+      </div>
     </div>
     <div class="modal-footer">
       <a href="#" class="modal-close waves-effect waves-green btn-flat">Close</a>

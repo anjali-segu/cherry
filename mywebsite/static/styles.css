@@ -231,6 +231,12 @@ h3 {
 	border-radius: 10px;
 	padding: 5px;
 }
+.success_format {
+	background-color: #f77165;
+	border: 3px solid #b71c1c;
+	border-radius: 10px;
+	padding: 5px;
+}
 .team_member_name {
 	font-size: 2em;
 }
