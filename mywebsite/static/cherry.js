@@ -264,8 +264,6 @@ $( document ).ready(function(){
     )
   }
   const toggleUpdateSubmit = function () {
-    console.log('email fields', isEmailFieldValid())
-    console.log('password fields', isPasswordFieldValid())
     if (
       isPasswordFieldValid() && isEmailFieldValid()
     ) {
